@@ -1,1 +1,195 @@
-hello
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Jing</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <style type="text/css">
+
+body{
+  overflow:hidden;
+}
+@media screen and (max-width: 767px) {   
+  body{
+    background: url("image/shanghai_w1.jpg");
+    background-size: cover;
+  } 
+  #photo_img{
+    position: relative;
+    width: 100%;
+  }
+  #photo{
+    position: relative;
+    left:15%;
+    width: 70%;
+    float:none;
+  }
+  #description{
+    position:relative;
+    left: 15%;
+    width:75%;
+  }
+}
+
+@media screen and (min-width: 1079px), (min-width:768px) {     
+  body{      
+    background: url("image/shanghai_w1.jpg");
+    background-size: cover;
+  } 
+  #photo_img{
+    position: relative;
+    width: 100%;
+  }
+  #photo{
+    position: relative;
+    left:15%;
+    width: 70%;
+    display:block;
+    float:none;
+  }
+  #description{
+    position:relative;
+    left: 15%;
+    width:75%;
+  }
+} 
+
+@media screen and (min-width: 1080px) {      
+  body{      
+    background: url("image/shanghai2.jpg");
+    background-size: cover;
+  } 
+  #photo_img{
+    position: absolute;
+    width: 100%;
+  }
+  #photo{
+    position: relative;
+    left:5%;
+    width: 15%;
+    float: left;
+  }
+  #description{
+    position:relative;
+    left: 20%;
+    height:30%;
+    width:70%;
+  }
+} 
+h1{
+  margin-top:0px;
+  font-family:Futura, 'Trebuchet MS', Arial, sans-serif;
+}
+.cover{
+  height:100%;
+  width:100%;
+  background:rgba(255,255,255,0.5);
+  position: relative;
+  display:table;
+}
+ul {
+  z-index: 3;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 0%;
+  background-color: #f1f1f1;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+  transition: width 1s;
+}
+
+
+li a {
+  display: block;
+  color: #000;
+  padding: 8px 0 8px 16px;
+  text-decoration: none;
+}
+
+li a.active {
+  background-color: #536dfe;
+  color: white;
+}
+
+li a:hover:not(.active) {
+  background-color: #727272;
+  color: white;
+}
+
+#nav{
+  visibility: hidden;
+}
+#nav_rest{
+  z-index:2;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  left:0%;
+  display:none;
+  background:rgba(0,0,0,0.5);
+}
+#menu{
+  cursor: pointer;
+  cursor: hand; 
+  position:fixed;
+  margin-top: 0;
+  height:50px;
+  width:60px;
+  z-index: 1;
+}
+
+
+th, td {
+    padding: 5px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+tr:hover{background-color:#f5f5f5}
+
+  </style>
+</head>
+  <body>
+ <div style="overflow:auto; position:absolute; top: 0px; left:0px; right:0px; bottom:0px;">
+  <div id="nav">
+    <ul id="nav_ul">
+      <li><a class="active" href="#home">Home</a></li>
+      <li><a href="#about">ABOUT</a></li>
+      <li><a href="#skills">SKILLS</a></li>
+      <li><a href="#education">EDUCATION</a></li>
+      <li><a href="#work">WORK</a></li>
+      <li><a href="#projects">PROJECTS</a></li>
+      <li><a href="#blog">BLOG</a></li>
+      <li><a href="#resume">RESUME</a></li>
+      <li><a href="#contact">CONTACT</a></li>
+    </ul>
+  </div>
+  <div id="nav_rest"></div>
+  <image id="menu" src="image/menu.png"></image> 
+    <div class="cover">
+      <h1 style="display:table-cell;text-align: center;vertical-align: middle">HELLO, I'M JING<br> <span style="font-size: 1.2em;font-family: STKaiti">靖</span></h1>
+      </div>
+    <div id="about" style="background: rgba(255,255,255,0.98);padding-bottom: 20px;">
+      <h1 style="position:relative;left:5%">About me</h1>
+      <div id="photo" >
+       <image id="photo_img"  src="image/jing1.jpg">
+      </div>
+      <div id="description">
+        <table>
+          <tr><td><span style="font-size: 80%;">I am a third year Computer Science undergraduate student at University of Waterloo, with an interest in statistics, combinatorics & optimization and computer science.</span></td></tr>
+          <tr><td><span style="font-size: 80%;">DATE OF BIRTH: 06/12/1994</span></td></tr>
+          <tr><td><span style="font-size: 80%;">EDUCATION: University of Waterloo</span></td></tr>
+          <tr><td><span style="font-size: 80%;">PHONE: 226-978-0612 </span> </td></tr> 
+          <tr><td><span style="font-size: 80%;">LANGUAGE: Mandarin, English </span> </td></tr>
+
+        </table>
+        
+        
+      </div>
+      
+      </div>
+    </div>  
+    <script type="text/javascript" src="main.js"></script>
+  </body>
+</html>
