@@ -34,7 +34,7 @@ body{
   }
 }
 
-@media screen and (min-width: 1079px), (min-width:768px) {     
+@media screen and (min-width: 1099px), (min-width:768px) {     
   body{      
     background: url("image/shanghai_w1.jpg");
     background-size: cover;
@@ -63,7 +63,7 @@ body{
   }
 } 
 
-@media screen and (min-width: 1080px) {      
+@media screen and (min-width: 1100px) {      
   body{      
     background: url("image/shanghai2.jpg");
     background-size: cover;
