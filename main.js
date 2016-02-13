@@ -10,7 +10,7 @@ var nav_ul = document.getElementById('nav_ul');
 menu.addEventListener('click', function(e) {
     nav.style.visibility = "visible";
     nav_rest.style.display = "block";
-    nav_ul.style.width = "20%";
+    nav_ul.style.width = "30%";
 });
 
 nav_rest.addEventListener('click', function(e){
@@ -18,6 +18,6 @@ nav_rest.addEventListener('click', function(e){
     setTimeout(function(){ 
 		nav.style.visibility = "hidden";
  		nav_rest.style.display = "none";
-    }, 1000);  
+    }, 500);  
     
 });

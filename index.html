@@ -96,7 +96,7 @@ ul {
   position: fixed;
   height: 100%;
   overflow: auto;
-  transition: width 1s;
+  transition: width 0.5s;
 }
 
 
@@ -139,6 +139,11 @@ li a:hover:not(.active) {
   z-index: 1;
 }
 
+#skills{
+  position: relative;
+  left:10%;
+  width: 80%;
+}
 
 th, td {
     padding: 5px;
@@ -156,7 +161,7 @@ tr:hover{background-color:#f5f5f5}
     <ul id="nav_ul">
       <li><a class="active" href="#home">Home</a></li>
       <li><a href="#about">ABOUT</a></li>
-      <li><a href="#skills">SKILLS</a></li>
+      <li><a href="#skill">SKILLS</a></li>
       <li><a href="#education">EDUCATION</a></li>
       <li><a href="#work">WORK</a></li>
       <li><a href="#projects">PROJECTS</a></li>
@@ -178,18 +183,20 @@ tr:hover{background-color:#f5f5f5}
       <div id="description">
         <table>
           <tr><td><span style="font-size: 80%;">I am a third year Computer Science undergraduate student at University of Waterloo, with an interest in statistics, combinatorics & optimization and computer science.</span></td></tr>
-          <tr><td><span style="font-size: 80%;">DATE OF BIRTH: 06/12/1994</span></td></tr>
-          <tr><td><span style="font-size: 80%;">EDUCATION: University of Waterloo</span></td></tr>
-          <tr><td><span style="font-size: 80%;">PHONE: 226-978-0612 </span> </td></tr> 
-          <tr><td><span style="font-size: 80%;">LANGUAGE: Mandarin, English </span> </td></tr>
-
+          <tr><td><span style="font-size: 80%;"><span style="font-weight:bold">DATE OF BIRTH</span>: 06/12/1994</span></td></tr>
+          <tr><td><span style="font-size: 80%;"><span style="font-weight:bold">EDUCATION</span>: University of Waterloo</span></td></tr>
+          <tr><td><span style="font-size: 80%;"><span style="font-weight:bold">PHONE</span>: 226-978-0612 </span> </td></tr> 
+          <tr><td><span style="font-size: 80%;"><span style="font-weight:bold">LANGUAGE</span>: Mandarin, English </span> </td></tr>
         </table>
-        
-        
       </div>
-      
+    <hr>
+    </div>
+    <div id="skill" style="background: rgba(255,255,255,0.98);padding-bottom: 20px;">
+      <h1 style="position:relative;left:5%;width:90%">Skills</h1>
+      <div style="width: 100%">
+        <image  id="skills" src="image/skills.png">
       </div>
-    </div>  
-    <script type="text/javascript" src="main.js"></script>
+    </div>
+    <script type="text/javascript" style="" src="main.js"></script>
   </body>
 </html>
