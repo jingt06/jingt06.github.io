@@ -157,6 +157,12 @@ li a:hover:not(.active) {
   z-index: 1;
 }
 
+#map {
+  position: relative;
+  height: 500px;
+  left: 5%;
+  width: 90%;
+}
 
 th, td {
     padding: 5px;
@@ -206,6 +212,7 @@ tr:hover{background-color:#f5f5f5}
           <tr><td><span style="font-size: 80%;"><span class="bold">EDUCATION</span>: University of Waterloo</span></td></tr>
           <tr><td><span style="font-size: 80%;"><span class="bold">PHONE</span>: 226-978-0612 </span> </td></tr> 
           <tr><td><span style="font-size: 80%;"><span class="bold">LANGUAGE</span>: Mandarin, English </span> </td></tr>
+          <tr><td><span style="font-size: 80%;"><span class="bold">WEBSITE</span>: <a href="http://jingt.co">jingt.co</a>, <a href="https://github.com/jingt06" target="_blank">GitHub</a>,<a href="https://ca.linkedin.com/in/jingtao06" target="_blank">LinkedIn</a></span> </td></tr>
         </table>
       </div>
     </div>
@@ -217,7 +224,6 @@ tr:hover{background-color:#f5f5f5}
         <image  id="skills" src="image/skills.png">
       </div>
     </div>
-
     <div id="education" style="background: rgba(255,255,255,0.98);padding-bottom: 20px;">
       <div style="background: #BBDEFB">
        <h1 style="position:relative;left:10%;width:90%">Education</h1>
@@ -271,6 +277,15 @@ tr:hover{background-color:#f5f5f5}
        </table>
       </div>
     </div>
+    <div id="contact" style="background: rgba(255,255,255,0.98);padding-bottom: 20px;">
+      <div style="background: #BBDEFB">
+        <h1 style="position:relative;left:10%;width:90%">Contact</h1>
+      </div>
+        <div id="map"></div>
+          <div style="position: absolute; width: 20%;background: rgb(200,200,200);"></div>
+    </div>  
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzBur34SEnB0txQlPM-gWOL9mLfoZPRQE&callback=initMap">
+    </script>
     <script type="text/javascript" style="" src="main.js"></script>
   </body>
 </html>
