@@ -37,6 +37,7 @@ function initMap() {
       '<div id="bodyContent">'+
       '<p><b>Address</b>: 49 Columbia Street West, Waterloo</p>' +
       '<p><b>Phone</b>: 226-978-0612</p>'+
+      '<p><b>Email</b>: genetao06@hotmail.com</p>'+
       '<p><b>Wechat</b>: jingtao1994</p>'+
       '<p><b><a href="https://ca.linkedin.com/in/jingtao06" target="_blank">LinkedIn</a></b>'+
       '<b>, <a href="https://github.com/jingt06" target="_blank">GitHub</a></b>'+
