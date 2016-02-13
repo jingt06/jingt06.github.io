@@ -10,6 +10,7 @@ body{
   body{
     background: url("image/shanghai_w1.jpg");
     background-size: cover;
+    font-size: 2em;
   } 
   #photo_img{
     position: relative;
@@ -37,6 +38,7 @@ body{
   body{      
     background: url("image/shanghai_w1.jpg");
     background-size: cover;
+    font-size: 1.5em;
   } 
   #photo_img{
     position: relative;
@@ -65,6 +67,7 @@ body{
   body{      
     background: url("image/shanghai2.jpg");
     background-size: cover;
+    font-size: 1em;
   } 
   #photo_img{
     position: absolute;
