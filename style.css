@@ -149,6 +149,16 @@ li a:hover:not(.active) {
   height:50px;
   width:60px;
   z-index: 1;
+  -webkit-transition: -webkit-transform .5s ease-in-out;
+  transition: transform .5s ease-in-out;
+}
+.rotate{
+  -webkit-transition: -webkit-transform .5s ease-in-out;
+  transition: transform .5s ease-in-out;
+}
+.rotate:hover {
+  -webkit-transform: rotate(360deg);
+  transform: rotate(360deg);
 }
 
 #map {
