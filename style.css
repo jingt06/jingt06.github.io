@@ -6,6 +6,13 @@ html * {
 body{
   overflow:hidden;
 }
+
+.page{
+  position: relative;
+  background: #ffffff;
+  box-shadow: 3px 3px 3px #888888;
+  border: 2px solid #BDBDBD;
+}
 @media screen and (max-width: 767px) {
   body{
     background: url("image/shanghai_w1.jpg");
@@ -65,7 +72,7 @@ body{
 
 @media screen and (min-width: 1080px) {      
   body{      
-    background: url("image/shanghai2.jpg");
+    background: url("image/shanghai.jpg");
     background-size: cover;
     font-size: 1em;
   } 
@@ -76,14 +83,14 @@ body{
   #photo{
     position: relative;
     left:10%;
-    width: 15%;
+    width: 20%;
     float: left;
   }
   #description{
     position:relative;
-    left: 25%;
+    left: 35%;
     height:40%;
-    width:60%;
+    width:55%;
   }
   #skills{
     position: relative;
