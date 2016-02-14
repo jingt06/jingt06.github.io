@@ -68,7 +68,7 @@ body{
   body{      
     background: url("image/shanghai.jpg");
     background-size: cover;
-    font-size: 1em;
+    font-size: 1.2em;
   } 
   #photo_img{
     position: absolute;
@@ -85,6 +85,7 @@ body{
     left: 35%;
     height:40%;
     width:55%;
+    font-size: 1.6em;
   }
   #skills{
     position: relative;
@@ -185,6 +186,14 @@ th, td {
     text-align: left;
 }
 
+.image:hover{
+  opacity: 0.3;
+}
+.image{
+  vertical-align: middle;
+  -webkit-transition: opacity 600ms;
+  transition: opacity 600ms;
+}
 
 .bold{
   font-weight: bold;
