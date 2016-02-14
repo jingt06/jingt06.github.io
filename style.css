@@ -7,12 +7,6 @@ body{
   overflow:hidden;
 }
 
-.page{
-  position: relative;
-  background: #ffffff;
-  box-shadow: 3px 3px 3px #888888;
-  border: 2px solid #BDBDBD;
-}
 @media screen and (max-width: 767px) {
   body{
     background: url("image/shanghai_w1.jpg");
