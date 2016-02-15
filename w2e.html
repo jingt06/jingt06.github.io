@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html ng-app="w2e">
+  <head>
+    <title>What2Eat</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzBur34SEnB0txQlPM-gWOL9mLfoZPRQE&signed_in=true&libraries=places">
+    </script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
+    <script type="text/javascript" src="w2e/main.js"></script>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        visibility: hidden;
+      }
+      #directionMap{
+      	width:100%;
+      	height:50%;
+      }
+    </style>
+  </head>
+  <body ng-controller="MainController">
+    <div id="map"></div>
+    <div ng-show="detecting"><h1 ng-model="back">Detecting restaurants near you. Please Wait.</h1></div>
+    {{back}}
+    <div ng-show="chosen" style="height: 40%">
+       <p style="font-size: 2em">How about <span style="font-weight: bold">{{chosen}}</span> at {{address}} </p>
+       <br>
+       <button style="font-size: 1.5em;width: 100%;height:40%;background: #45ff2f" ng-click="direction()"ng-show="!going">Yes, take me there</button> <button style="font-size: 1.5em;width: 100%;height: 40%;background-color:#ff0033" ng-click="reselect()" ng-show="!going">No, get another one</button>
+    </div>
+    <div id="floating-panel" ng-show="going">
+    <b>Mode of Travel: </b>
+    <select id="mode">
+      <option value="DRIVING">Driving</option>
+      <option value="WALKING">Walking</option>
+      <option value="BICYCLING">Bicycling</option>
+      <option value="TRANSIT">Transit</option>
+    </select>
+    </div>
+    <div id="directionMap"  ng-show="going"></div>
+  </body>
+</html>
