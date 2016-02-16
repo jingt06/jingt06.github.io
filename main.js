@@ -60,3 +60,8 @@ function initMap() {
     infowindow.open(map, marker);
 }
 
+$(document).ready(function() {
+      $('#loading').css('opacity','0');
+ 
+});
+
