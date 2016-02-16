@@ -16,8 +16,8 @@ menu.addEventListener('click', function(e) {
 nav_rest.addEventListener('click', function(e){
     nav_ul.style.width = "0%";
     setTimeout(function(){ 
-		nav.style.visibility = "hidden";
- 		nav_rest.style.display = "none";
+  		nav.style.visibility = "hidden";
+   		nav_rest.style.display = "none";
     }, 500);  
     
 });
@@ -61,7 +61,13 @@ function initMap() {
 }
 
 $(document).ready(function() {
-      $('#loading').css('opacity','0');
+    setTimeout(function(){  
+        $('#loading').css('opacity','0'); 
+    }, 1000); 
+    setTimeout(function(){  
+        $('#loading').hide(); 
+    }, 2000); 
+ 
  
 });
 

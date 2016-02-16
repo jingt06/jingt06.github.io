@@ -100,8 +100,8 @@ body{
   width: 100%;
   z-index: 10;
   background-color: #f5f5f5;    
-  -webkit-transition: all 0.3s 0.6s ease-out;  
-  transition: all 0.3s 0.6s ease-out;
+  -webkit-transition: opacity 1s;
+  transition: opacity 1s;
 }
 
 .header{
