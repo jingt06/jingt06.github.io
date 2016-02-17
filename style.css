@@ -183,6 +183,13 @@ h1{
   -webkit-transition: -webkit-transform .5s ease-in-out;
   transition: transform .5s ease-in-out;
 }
+#menu:hover{
+  box-shadow: 5px 5px 5px #888888;
+}
+#menu:active{
+  box-shadow: 1px 1px 1px #888888;
+}
+
 .rotate{
   -webkit-transition: -webkit-transform .5s ease-in-out;
   transition: transform .5s ease-in-out;
