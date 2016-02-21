@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html ng-app="perbikepertripReport">
+<head>
+  <meta charset="UTF-8">
+	<title>perbikepertripReport</title>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
+  <script type="text/javascript" src="./bikes.js"></script>
+	<script type="text/javascript" src="./main.js"></script>
+</head>
+<body ng-controller="MainController">
+
+  <ul  style="list-style-type: disc;">
+      <li ng-repeat="bike in WeBikes | orderBy: 'IMEI'" ng-click="show_bike_detail(bike.IMEI)" style="cursor:pointer">
+      IMEI: {{bike.IMEI}}
+        <ul ng-show="bike_detail.hasOwnProperty(bike.IMEI)">
+          <li ng-repeat="trip in bike.trips" ng-click="show_trip_detail(bike.IMEI, trip.id);$event.stopPropagation()" style="cursor:pointer">{{trip.StartTime}} to {{trip.EndTime}}
+            <table ng-show="detial_show(bike.IMEI,trip.id)">
+              <tr><td>{{trip.StartTime.substring(10)}}</td><td ng-repeat="time in trip.quality" ng-style="{color: getcolor(time.v)}" >&nbsp;&nbsp;•&nbsp;&nbsp;</td><td>{{trip.EndTime.substring(10)}}</td></tr>
+            </table>
+          </li>
+        </ul>
+        
+      </li>
+  </ul>
+
+</body>
+</html>
