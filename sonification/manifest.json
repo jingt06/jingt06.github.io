@@ -1,0 +1,39 @@
+{
+	"name": "sonyChart",
+	"version": "0.0.1",
+	"title": "",
+	"author": {
+		"name": "Jing",
+		"url": "jingt.co"
+	},
+	"licenses": [
+		{
+			"type": "",
+			"url": ""
+		}
+	],
+	"dependencies": {
+		"highcharts": ""
+	},
+	"type": "",
+	"description": "",
+	"keywords": [
+		"",
+		""
+	],
+	"homepage": "",
+	"docs": "",
+	"bugs": "",
+	"download": "",
+	"demo": [
+		"",
+		""
+	],
+	"maintainers": [
+		{
+			"name": "",
+			"email": "",
+			"url": ""
+		}
+	]
+}

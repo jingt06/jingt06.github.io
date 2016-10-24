@@ -1,0 +1,23 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="./Tone.min.js"></script>
+<script src="../soniChart.js"></script>
+<script src="data.js"></script>
+<script src="example2.js"></script>
+
+
+<div style="max-width: 800px; margin: 0 auto">
+	<div id="container" style="height: 300px"></div>
+	<button onclick="chart.start()">start</button>
+	<button onclick="chart.stop()">stop</button>
+	<div id="report"></div>
+	<form id="mapping">
+	less than -250: <input id="input1" type="text" value="C4"><br>
+	-250 to -100: <input id="input2" type="text" value="D4"><br>
+	-100 to 0: <input id="input3" type="text" value="E4"><br>
+	0 to 100: <input id="input4" type="text" value="F4"><br>
+	100 to 250: <input id="input5" type="text" value="G4"><br>
+	greater than 250: <input id="input6" type="text" value="A4"><br>
+	<input type="button" value="change mapping" onclick="changeMapping()">
+	</form>
+</div>
