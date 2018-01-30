@@ -2,12 +2,12 @@
   font-family: 'Material Icons';
   font-style: normal;
   font-weight: 400;
-  src: url(https://jingt06.github.io/lib/md-icon/iconfont/MaterialIcons-Regular.eot); /* For IE6-8 */
+  src: url(http://jingt.co/lib/md-icon/iconfont/MaterialIcons-Regular.eot); /* For IE6-8 */
   src: local('Material Icons'),
     local('MaterialIcons-Regular'),
-    url(https://jingt06.github.io/lib/md-icon/iconfont/MaterialIcons-Regular.woff2) format('woff2'),
-    url(https://jingt06.github.io/lib/md-icon/iconfont/MaterialIcons-Regular.woff) format('woff'),
-    url(https://jingt06.github.io/lib/md-icon/iconfont/MaterialIcons-Regular.ttf) format('truetype');
+    url(http://jingt.co/lib/md-icon/iconfont/MaterialIcons-Regular.woff2) format('woff2'),
+    url(http://jingt.co/lib/md-icon/iconfont/MaterialIcons-Regular.woff) format('woff'),
+    url(http://jingt.co/lib/md-icon/iconfont/MaterialIcons-Regular.ttf) format('truetype');
 }
 
 .material-icons {
