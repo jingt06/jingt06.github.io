@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>J!ng</title>
+    <link rel="icon"
+     type="image/png"
+     href="image/j.png">
+    <script defer src="lib/fontawesome/svg-with-js/js/fontawesome-all.min.js"></script>
+    <link rel="stylesheet" href="lib/materialize/css/materialize.min.css">
+    <link rel="stylesheet" href="lib/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="lib/materialize/js/materialize.min.js"></script>
+    <script src="lib/main.js"></script>
+  </head>
+  <body>
+
+  <nav>
+    <div class="nav-wrapper light-blue lighten-2">
+      <a href="#" data-activates="slide-out" class="brand-logo left">
+        <i class="fa fa-bars fa" style="padding-left: 5px"></i>
+      </a>
+      <ul id="nav-mobile" class="right hide-on-small">
+        <li><a onclick="home_page()">Home</a></li>
+        <li><a onclick="projects_page()">Projects</a></li>
+        <li><a onclick="life_page()">Life</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <ul id="slide-out" class="side-nav">
+    <li>
+      <div class="user-view">
+        <div class="background">
+          <img style="width:300px;height:230px;" src="image/shanghai.jpg">
+        </div>
+        <a><img class="circle" src="image/jing1.jpg"></a>
+        <a><span class="white-text name">Jing Tao</span></a>
+        <a><span class="white-text email">cs.jingtao@gmail.com</span></a>
+      </div>
+    </li>
+    <li><a style="font-size: 15px" href="https://www.linkedin.com/in/jingtao06/" target="_blank"><i class="fab fa-linkedin fa-lg"></i> &nbsp LinkedIn</a></li>
+    <li><a style="font-size: 15px" href="https://github.com/jingt06/" target="_blank"><i class="fab fa-github-square fa-lg"></i> &nbsp GitHub</a></li>
+    <li><div class="divider"></div></li>
+    <li><a style="cursor: pointer" onclick="home_page()">Home</a></li>
+    <li><a style="cursor: pointer" onclick="projects_page()">Projects</a></li>
+    <li><a style="cursor: pointer"onclick="life_page()">Life</a></li>
+  </ul>
+
+  <div class="row" id="home">
+    <div class="col s10 m4 l3 offset-s1 offset-m1 offset-l1">
+      <div class="card" id="about-me">
+        <div class="card-image">
+          <img src="image/life4.jpg">
+          <span class="card-title">About Me</span>
+        </div>
+        <div class="card-content">
+          <p>I am a fourth year Computer Science undergraduate student at University of Waterloo. I am a quick learner and love solving problems.</p>
+        </div>
+        <div class="card-action">
+          <a href="https://www.linkedin.com/in/jingtao06/" target="_blank">LinkedIn</a>
+          <a href="https://github.com/jingt06/" target="_blank">Github</a>
+          <a href="#">Resume</a>
+        </div>
+      </div>
+      <div class="card" id="skill-list">
+        <div class="card-image">
+          <img src="image/skill.jpg">
+          <span class="card-title">Skills</span>
+        </div>
+        <div class="card-content">
+          <table>
+            <tr><td><b>Web/Server Framwork:</b><br>NodeJS, Express, Angular, React, Webpack, jQuery, Backbone, Django, Tornado</td></tr>
+            <tr><td><b>Machine Learning:</b><br>Numpy, Keras, Tensorflow</td></tr>
+            <tr><td><b>Mobile Development:</b><br>React Native, Android SDK</td></tr>
+            <tr><td><b>Database:</b><br>MongoDB, MySQL, PostgreSQL, KDB</td></tr>
+            <tr><td><b>Programming Language</b><br>C++, C, JavaScript, Python, Java, Lisp, Q, Bash</td></tr>
+            <tr><td>Excellent understanding of <b>data structures</b>, <b>algorithms</b> and <b>design patterns</b></td></tr>
+            <tr><td>Familiar with <b>object-oriented programming</b>, <b>concurrent programming</b> and <b>network programming</b></td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col s10 m6 l7 offset-s1">
+      <div class="card" id="education">
+        <div class="card-image">
+          <img src="image/eng_edu.jpg">
+          <span class="card-title">Education</span>
+        </div>
+        <div class="card-content">
+          <table>
+            <tr>
+              <td colspan=2>
+                <div style="float:left"><img style="width:35px" src="image/uw.gif" alt="UWaterloo"><div style="margin-top: -35px; font-weight: bold; font-size: 20px;margin-left: 35px">University of Waterloo</div></div>
+                <div style="float:right"><i>2013-2018<i></div>
+              </td>
+            </tr>
+            <tr>
+              <td><b>Major</b></td>
+              <td>Computer Science</td>
+            </tr>
+            <tr>
+              <td><b>Minor</b></td>
+              <td>Combinatorics & Optimization, Computational Mathematics</td>
+            </tr>
+            <tr>
+              <td><b>Average</b></td>
+              <td>Major: 90, Overall: 85</td>
+            </tr>
+            <tr>
+              <td><b>Relevant Courses</b></td>
+              <td>Operating System, Algorithm, Network, Software Architecture, Distributed System,  Machine Learning, Artificial Intelligence</td>
+            </tr>
+          </table>
+        </div>
+        <div class="card-action">
+          <a>Transcript</a>
+        </div>
+      </div>
+      <div class="card" id="work-experience">
+        <div class="card-image">
+          <img src="image/sf.jpg">
+          <span class="card-title">Work Experience</span>
+        </div>
+        <div class="card-content">
+          <ul class="collapsible" data-collapsible="expandable">
+            <li>
+              <div class="collapsible-header">
+                <img style="height:30px" src="image/wish.png" alt="Wish">
+                <b style="margin-top:5px;margin-left:5px">Software Engineer Intern</b>
+                <span style="margin-top:5px;margin-left:10px">Jan-Apr 2018</span>
+              </div>
+              <div class="collapsible-body">
+                Worked in Merchant Payment Team
+              </div>
+            </li>
+            <li>
+              <div class="collapsible-header">
+                <img style="height:30px" src="image/google.png" alt="Google">
+                <b style="margin-top:5px;margin-left:5px">Software Engineer Intern</b>
+                <span style="margin-top:5px;margin-left:10px">Jan-Apr 2017</span>
+              </div>
+              <div class="collapsible-body">
+                  Worked in Web Platform Team under Chrome Team, built <a target="_blank" href="https://web-confluence.appspot.com">web-confluence dashboard</a>.<br><br>
+                  &bull; Implemented JavaScript program to extract web APIs as object graph from a variety of versions and browsers via BrowserStack<br><br>
+                  &bull; Identified and extracted web interfaces from object graph and built tools to display web API catalogs<br><br>
+                  &bull; Established and visualized confluence metrics to show the health of web platform using D3.js
+              </div>
+            </li>
+            <li>
+              <div class="collapsible-header">
+                <b class="light-blue-text text-darken-2
+        " style="font-size:large">Quantum Cube Corporation</b>
+                <b style="margin-top:5px;margin-left:5px">Full Stack Developer Intern</b>
+                <span style="margin-top:5px;margin-left:10px">May-Aug 2016</span>
+              </div>
+              <div class="collapsible-body"><span>
+                &bull; Built stock analysis website using Angular, Highcharts, MySQL and NodeJS <br><br>
+                &bull; Implemented concurrent programs to collect stock quotes using C++ and Kdb/ <br><br>
+                &bull; Developed web applications to display real-time stock quotes using socket.io and ZeroMQ
+              </span></div>
+            </li>
+            <li>
+              <div class="collapsible-header">
+                <img style="height:40px" src="image/baixing.gif" alt="Baixing.com">
+                <b style="margin-top:7px;margin-left:5px">BI Tech Intern</b>
+                <span style="margin-top:7px;margin-left:10px">May-Aug 2015</span>
+              </div>
+              <div class="collapsible-body"><span>
+                &bull; Developed CRM modules using Html, CSS and jQuery <br><br>
+                &bull; Worked with MongoDB, PostgreSQL and created APIs
+                with Python Flask <br><br>
+                &bull; Wrote Python and pgScript for data screening and data analysis
+              </span></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="card" id="research-assistant">
+        <div class="card-image">
+          <img src="image/research.jpg">
+          <span class="card-title">Research</span>
+        </div>
+        <div class="card-content">
+          <ul class="collapsible" data-collapsible="expandable">
+            <li>
+              <div class="collapsible-header">
+                Undergraduate Research Assistant
+                <b style="margin-left:5px">CrowdEEG Project</b>
+                <span style="margin-left:10px">Sep-Dec 2016</span>
+              </div>
+              <div class="collapsible-body">
+                &bull; Worked on data analysis and created restfulAPI in Python Django <br><br>
+                &bull; Implemented Highchart plugin for data sonification with Tone.js <br><br>
+                &bull; Built a platform with React and Redux that allows mapping from signal to sound
+              </div>
+            </li>
+            <li>
+              <div class="collapsible-header">
+                Undergraduate Research Assistant
+                <b style="margin-left:5px">Webike Project</b>
+                <span style="margin-left:10px">Jan-Apr 2016</span>
+              </div>
+              <div class="collapsible-body">
+                &bull; Wrote Python scripts for data analysis <br><br>
+                &bull; Implemented trip detection algorithm based on gps, acceleration and discharge current <br><br>
+                &bull; Created data visualization using Google maps API
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" id="projects" style="display: none">
+    <div class="col s10 m4 l4 offset-s1">
+      <div class="card personal-website">
+        <div class="card-image">
+          <img src="image/projects/website.png">
+          <span class="card-title" style="color: black">jing</span>
+        </div>
+        <div class="card-content">
+          <p>A personal website deployed on Github, built with Materialize.</p>
+        </div>
+        <div class="card-action">
+          <a href="https://github.com/jingt06/jingt06.github.io" target="_blank">Github</a>
+        </div>
+      </div>
+      <div class="card connect4">
+        <div class="card-image">
+          <img src="image/projects/connect4.jpg">
+          <span class="card-title">Connect4 AI (2017)</span>
+        </div>
+        <div class="card-content">
+          <p>Developed an AI agent to play connect4. Using minimax adversarial search with alpha-beta pruning. Ranked top 10 in a tournament amoung all students.</p>
+        </div>
+      </div>
+      <div class="card rpc">
+        <div class="card-image">
+          <img src="image/projects/RPC.png">
+          <span class="card-title" style="color: black">RPC Lib (2017)</span>
+        </div>
+        <div class="card-content">
+          <p> Implemented a c++ library including client, server stub and a binder program allowing client to execute remote procedures with dynamic binding</p>
+        </div>
+      </div>
+      <div class="card cc3kio">
+        <div class="card-image">
+          <img src="image/projects/cc3kio.png">
+          <span class="card-title" style="color: black">cc3k.io (2016)</span>
+        </div>
+        <div class="card-content">
+          <p> An roguelike online multiplayer game developed in Node and socket.io, deployed on Heroku.</p>
+        </div>
+        <div class="card-action">
+          <a href="http://cc3k-io.herokuapp.com/" target="_blank">Link</a>
+          <a href="https://github.com/jingt06/cc3k.io" target="_blank">Github</a>
+        </div>
+      </div>
+      <div class="card webike">
+        <div class="card-image">
+          <img src="image/projects/webike.jpg">
+          <span class="card-title" style="color: black">WeBike (2015)</span>
+        </div>
+        <div class="card-content">
+          <p> Worked as an undergraduate research assistant in Information System and Science for Energy department in University of Waterloo. Worked on data analysis and data visualization for WeBike project.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col s10 m4 l4 offset-s1">
+      <div class="card web-confluence">
+        <div class="card-image">
+          <img src="image/projects/confluence.jpg">
+          <span class="card-title">Web Confluence (2017)</span>
+        </div>
+        <div class="card-content">
+          <p>Web Confluence Dashboard is my intern project in Google. It contains API Catalog and Confluence Metrics. API Catalog lists properties and methods exposed on constructor functions. Confluence Metrics is a visualization of how health is the web platform.</p>
+        </div>
+        <div class="card-action">
+          <a href="https://web-confluence.appspot.com/" target="_blank">Link</a>
+          <a href="https://github.com/GoogleChromeLabs/confluence" target="_blank">Github</a>
+        </div>
+      </div>
+      <div class="card cnn">
+        <div class="card-image">
+          <img src="image/projects/cnn.png">
+          <span class="card-title" style="color: black">Digit Classfier (2017)</span>
+        </div>
+        <div class="card-content">
+          <p>Built a convlutional neural network for image classifier on MNIST with Tensorflow, Numpy and Keras. Used 10-fold cross validation. Improved accuracy rate by applying test generalization and regularization.</p>
+        </div>
+      </div>
+      <div class="card crowdeeg">
+        <div class="card-image">
+          <img src="image/projects/crowdeeg.png">
+          <span class="card-title">CrowdEEG Sonification (2016)</span>
+        </div>
+        <div class="card-content">
+          <p>Worked as an undergraduate research assistant in CrowdEEG team. Involved in building a Highchart plugin to perform data sonification and a platform for transfering EEG signals to sound in React and Redux</p>
+        </div>
+        <div class="card-action">
+          <a href="http://crowdeeg.ca/" target="_blank">Link</a>
+        </div>
+      </div>
+      <div class="card stat">
+        <div class="card-image">
+          <img src="image/projects/stat.jpg">
+          <span class="card-title">Node Statistic (2016)</span>
+        </div>
+        <div class="card-content">
+          <p> A npm package that connects NodeJS with R. Allows Node program to perform statistical analysis in R.</p>
+        </div>
+        <div class="card-action">
+          <a href="https://github.com/jingt06/node-statistics" target="_blank">Github</a>
+        </div>
+      </div>
+      <div class="card wlp4">
+        <div class="card-image">
+          <img src="image/projects/compiler.png">
+          <span class="card-title" style="color: black">WLP4 Compiler (2015)</span>
+        </div>
+        <div class="card-content">
+          <p>A compiler for WLP4, including lexical analysis , syntax analysis, semantic analysis and code generation.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col s10 m4 l4 offset-s1">
+      <div class="card circle">
+        <div class="card-image">
+          <img src="image/projects/circle.png">
+          <span class="card-title">Circle App (2017)</span>
+        </div>
+        <div class="card-content">
+          <p>Worked as an architect, team leader in a team of four. Built a location based chat mobile app in React Native with a server in NodeJS. Store images and sound files using Google Cloud Storage.</p>
+        </div>
+        <div class="card-action">
+          <a href="https://github.com/446DayDayUp/CircleApp" target="_blank">Github</a>
+        </div>
+      </div>
+      <div class="card rdt">
+        <div class="card-image">
+          <img src="image/projects/rdt.png">
+          <span class="card-title" style="color: black">Reliable Data Transfer (2017)</span>
+        </div>
+        <div class="card-content">
+          <p>Built a lib in Python to perform reliable data transfer with go-back-N and selective repeat protocol.</p>
+        </div>
+      </div>
+      <div class="card os161">
+        <div class="card-image">
+          <img src="image/projects/os161.png">
+          <span class="card-title" style="color: black">OS161 (2016)</span>
+        </div>
+        <div class="card-content">
+          <p> A project of Operating System course. Implemented features for Operating System 161, including locks, system calls and a virtual memory system</p>
+        </div>
+      </div>
+      <div class="card tutor">
+        <div class="card-image">
+          <img src="image/projects/qa_app.jpg">
+          <span class="card-title">Tutor Q&A App (2015)</span>
+        </div>
+        <div class="card-content">
+          <p>Worked in a team of five, built an Android App that connects students and tutors built with Android Studio. Worked with Amazon EC2 as cloud storage.</p>
+        </div>
+      </div>
+      <div class="card cc3k">
+        <div class="card-image">
+          <img src="image/projects/cc3k.jpg">
+          <span class="card-title">ChamberCrawler (2014)</span>
+        </div>
+        <div class="card-content">
+          <p>A game developed in C++ with varieties of design patterns.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slider-adjustment" id="life" style="display: none">
+    <div class="slider fullscreen">
+      <ul class="slides">
+        <li>
+          <img src="image/photos/sh.jpg">
+          <div class="caption center-align">
+            <h3 class="light grey-text text-lighten-3">I am from Shanghai</h3>
+          </div>
+        </li>
+        <li>
+          <img src="image/photos/toronto.jpg">
+          <div class="caption right-align">
+            <h3 class="light grey-text text-lighten-3">I studied in Canada since 2012</h3>
+          </div>
+        </li>
+        <li>
+          <img src="image/photos/uw.jpg">
+          <div class="caption right-align">
+            <h3 class="light grey-text text-lighten-3">Later, I went to the</h3>
+            <h3 class="light grey-text text-lighten-3">University of Waterloo</h3>
+          </div>
+        </li>
+        <li>
+          <img src="image/photos/google.jpg">
+          <div class="caption left-align">
+            <h4 class="light grey-text text-lighten-3">I interned in</h4>
+            <h4 class="light grey-text text-lighten-3">Google</h4>
+            <h4 class="light grey-text text-lighten-3">Waterloo</h4>
+            <h4 class="light grey-text text-lighten-3">in 2017</h4>
+          </div>
+        </li>
+        <li>
+          <img src="image/photos/sf.jpg">
+          <div class="caption right-align">
+            <h4 class="light grey-text text-lighten-3">Currently, I am interning in</h4>
+            <h4 class="light grey-text text-lighten-3">Wish, San Francisco</h4>
+          </div>
+        </li>
+        <li>
+          <img src="image/photos/soccer.jpg">
+          <div class="caption right-align">
+            <h3 class="light grey-text text-lighten-3">I love watching soccer</h3>
+          </div>
+        </li>
+        <li>
+          <img src="image/photos/raptor.jpg">
+          <div class="caption right-align">
+            <h3 class="light grey-text text-lighten-3">and basketball</h3>
+          </div>
+        </li>
+        <li>
+          <img src="image/photos/banff.jpg">
+        </li>
+        <li>
+          <img src="image/photos/banff2.jpg">
+        </li>
+        <li>
+          <img src="image/photos/beach.jpg">
+        </li>
+        <li>
+          <img src="image/photos/bbq.jpg">
+        </li>
+      </ul>
+    </div>
+  </div>
+  </body>
+</html>
