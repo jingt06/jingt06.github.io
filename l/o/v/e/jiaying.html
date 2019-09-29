@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html style="scroll-behavior: smooth; font-family: 'Ma Shan Zheng', cursive; font-size: 20px">
+  <head>
+    <title>♥ to 佳樱🌸</title>
+    <link rel="icon"
+     type="image/png"
+     href="https://img.icons8.com/plasticine/100/000000/envelope-love-1.png">
+    <script src="https://kit.fontawesome.com/1e6da04dd2.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../../../../lib/materialize/css/materialize.min.css">
+    <link rel="stylesheet" href="../../../../lib/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="../../../../lib/materialize/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+    <script type="text/javascript">
+      var audio;
+      window.onload = function () {
+        audio = new Audio('jj.mov');
+      }
+      function fade(element, timeout=0) {
+          var op = 1;  // initial opacity
+          setTimeout(function(){
+            var timer = setInterval(function () {
+                if (op <= 0.1){
+                    clearInterval(timer);
+                    element.style.display = 'none';
+                }
+                element.style.opacity = op;
+                element.style.filter = 'alpha(opacity=' + op * 100 + ")";
+                op -= op * 0.1;
+            }, 50);
+          }, timeout);
+      }
+      function fadeIn(element, timeout=0) {
+          var op = 0;  // initial opacity
+          setTimeout(function(){
+            var timer = setInterval(function () {
+                if (op >= 1){
+                    clearInterval(timer);
+                }
+                element.style.opacity = op;
+                element.style.filter = 'alpha(opacity=' + op * 100 + ")";
+                op += 0.1;
+            }, 50);
+          }, timeout);
+      }
+
+      function fp_btn_clicked() {
+        audio.play();
+        var loadingDiv = document.getElementById('loading-div');
+        fade(loadingDiv);
+      }
+      function clickOnFade(e) {
+        fade(e)
+      }
+      function fadeInList(listId) {
+        var list = document.getElementById(listId);
+        var i = 1000
+        for (var p of list.children) {
+          fadeIn(p, i);
+          i += 1000;
+        }
+      }
+    </script>
+    <style type="text/css">
+      .page-card {
+        height: 100vh;
+      }
+      #loading-div {
+        position: absolute;
+        text-align: center;
+        top: 0%;
+        left: 0%;
+        z-index: 100;
+        height:100%;
+        width:100%;
+        background-image: url('bg.jpg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+      #fp-btn {
+        position:relative;
+        top: 70%;
+        z-index: 101;
+        text-align:center;
+        display: inline-block;
+        opacity: 0.95;
+      }
+      .hide-p {
+        opacity: 0;
+      }
+    </style>
+  </head>
+  <body style="margin: 0; height: 100%; overflow: hidden">
+  <div id="loading-div" >
+    <a class="btn-floating btn-large pulse #00e5ff cyan accent-3
+" id="fp-btn" onclick="fp_btn_clicked()"><i class="fas fa-fingerprint fa-10x" style="text-align: center;"></i></a>
+  </div>
+  <div class="row" id="sec1">
+    <div class="col s12 m7">
+      <div class="card page-card">
+        <div class="card-image">
+          <img src="l1.png">
+          <span class="card-title">确认过指纹，是对的人</span>
+        </div>
+        <div class="card-content">
+          <p>（眼神也确认过啦）</p>
+        </div>
+        <div class="card-action">
+          <a href="#sec2">好！</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" id="sec2">
+    <div class="col s12 m7">
+      <div class="card page-card">
+        <div class="card-image">
+          <img src="mor.jpg">
+          <span class="card-title">第一次见佳樱🌸</span>
+        </div>
+        <div class="card-content">
+          <p>🌞感觉你好阳光</p>
+          <p>😊可爱！</p>
+          <p>😆性格真好，很温柔</p>
+          <p>💓笑起来特别迷人</p>
+          <p>🏃好佩服你有毅力跑马拉松！</p>
+        </div>
+        <div class="card-action">
+          <a href="#sec3">然后呢？</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" id="sec3">
+    <div class="col s12 m7">
+      <div class="card page-card">
+        <div class="card-image">
+          <img src="mc.jpg">
+          <span class="card-title">谢谢你亲手做的月饼🥮！</span>
+        </div>
+        <div class="card-content">
+          <p>吃了好甜</p>
+          <p>（虽然是鲜肉月饼哈哈）</p>
+        </div>
+        <div class="card-action">
+          <a href="#sec4">好吃！</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" id="sec4">
+    <div class="col s12 m7">
+      <div class="card page-card">
+        <div class="card-image">
+          <img src="e.jpg">
+        </div>
+        <div class="card-content">
+          <p>让我们一起完成这个打卡目标吧~</p>
+          <p>🍔🍣🍲🍜🍕🍢🍉🌭🍿🍱🍝🍛🍨</p>
+        </div>
+        <div class="card-action">
+          <a href="#sec4-2">就知道吃！</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" id="sec4-2">
+    <div class="col s12 m7">
+      <div class="card page-card">
+        <div class="card-image">
+          <img src="m.jpg">
+          <span class="card-title">一起看电影也很开心！</span>
+        </div>
+        <div class="card-content">
+          <p>还想看Joker, 寄生虫, Jojo Rabbit!</p>
+        </div>
+        <div class="card-action">
+          <a href="#sec5">约！</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" id="sec5">
+    <div class="col s12 m7">
+      <div class="card page-card">
+        <div class="card-image">
+          <img src="lf.jpg">
+          <span class="card-title">好遗憾你那天不在呀</span>
+        </div>
+        <div class="card-content">
+          <p>下次我们一起好吗</p>
+        </div>
+        <div class="card-action">
+          <a href="#sec6" onclick="fadeInList('wish-list')">好</a>
+          <a onclick="clickOnFade(this)">不好</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" id="sec6">
+    <div class="col s12 m7">
+      <div class="card page-card">
+        <div class="card-image">
+          <img src="wish.jpg">
+        </div>
+        <div class="card-content" id='wish-list'>
+          <p class="hide-p">答应我，我们要一起</p>
+          <p class="hide-p">🍁去看枫叶</p>
+          <p class="hide-p">📚看书学习</p>
+          <p class="hide-p">😈去鬼屋</p>
+          <p class="hide-p">🎵看音乐剧</p>
+          <p class="hide-p">✨放天灯</p>
+          <p class="hide-p">🌠看星星</p>
+          <p class="hide-p">🏃‍♀️运动健身</p>
+          <p class="hide-p">🚴骑单车</p>
+          <p class="hide-p">🚣划船</p>
+          <p class="hide-p">🎿滑雪</p>
+          <p class="hide-p">🎬宅着看电影</p>
+          <p class="hide-p">🍿做健康的爆米花</p>
+          <p class="hide-p">🍲到处吃遍美食</p>
+          <p class="hide-p">🏖躺遍世界各地</p>
+          <p class="hide-p">⛽️一起为未来加油</p>
+        </div>
+        <div class="card-action">
+          <a href="#sec7" onclick="fadeInList('bmg')">to be continued</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" id="sec7">
+    <div class="col s12 m7">
+      <div class="card page-card">
+        <div class="card-image">
+          <img src="t.jpg">
+        </div>
+        <div class="card-content" id='bmg'>
+          <p class="hide-p">最后</p>
+          <p class="hide-p">。</p>
+          <p class="hide-p">。</p>
+          <p class="hide-p">。</p>
+          <p class="hide-p">做我的</p>
+          <p class="hide-p">❤️</p>
+          <p class="hide-p">女朋友</p>
+          <p class="hide-p">❤️</p>
+          <p class="hide-p">。</p>
+          <p class="hide-p">让我养你，照顾你</p>
+          <p class="hide-p">好吗?</p>
+        </div>
+        <div class="card-action">
+          <a href="#sec8">YES!</a>
+          <a href="#choose-again">no</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" id="choose-again">
+    <div class="col s12 m7">
+      <div class="card page-card">
+        <div class="card-image">
+          <img src="da.png">
+        </div>
+        <div class="card-action">
+          <a href="#sec7">再选一次！？</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" id="sec8">
+    <div class="col s12 m7">
+      <div class="card page-card">
+        <div class="card-image">
+          <img src="last.jpg">
+          <span class="card-title">❤️之后的春夏秋冬我们要一直在一起哦❤️</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  </body>
+</html>
