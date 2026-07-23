@@ -782,6 +782,7 @@ scene.add(new THREE.AmbientLight(0xffffff, 2.0));
       pr.position.copy(normal.clone().multiplyScalar(surf + 0.002));
       pr.lookAt(pr.position.clone().add(normal));
       pr.userData.phase = Math.random() * Math.PI * 2;
+      pr.userData.speed = 0.6 + Math.random() * 1.2;
       scene.add(pr);
       pulseRings.push(pr);
 
@@ -824,6 +825,7 @@ scene.add(new THREE.AmbientLight(0xffffff, 2.0));
       pr.lookAt(pr.position.clone().add(normal));
       pr.userData.normal = normal.clone();
       pr.userData.phase  = Math.random() * Math.PI * 2;
+      pr.userData.speed  = 0.6 + Math.random() * 1.2;
       scene.add(pr);
       pulseRings.push(pr);
     }
@@ -919,7 +921,7 @@ scene.add(new THREE.AmbientLight(0xffffff, 2.0));
         pr.material.opacity = 0.4 + 0.2 * Math.sin(t * 2.4 + pr.userData.phase);
       } else {
         /* expanding ring */
-        const progress = ((t * 1.2 + pr.userData.phase) % (Math.PI * 2)) / (Math.PI * 2);
+        const progress = ((t * pr.userData.speed + pr.userData.phase) % (Math.PI * 2)) / (Math.PI * 2);
         const s = 1 + progress * 3;
         pr.scale.set(s, s, 1);
         pr.material.opacity = (1 - progress) * 0.65;
