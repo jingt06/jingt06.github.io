@@ -472,6 +472,10 @@
     </div>
     <div class="travel-right">
       <canvas id="globe-canvas" style="display:block; width:100%; height:100%; position:absolute; inset:0;"></canvas>
+      <div style="position:absolute; bottom:16px; right:16px; display:flex; flex-direction:column; gap:4px; z-index:5;">
+        <button id="globe-zoom-in"  style="width:32px; height:32px; background:#fff; border:1px solid #ddd; cursor:pointer; font-size:18px; line-height:1; color:#444; display:flex; align-items:center; justify-content:center;">+</button>
+        <button id="globe-zoom-out" style="width:32px; height:32px; background:#fff; border:1px solid #ddd; cursor:pointer; font-size:18px; line-height:1; color:#444; display:flex; align-items:center; justify-content:center;">−</button>
+      </div>
     </div>
   </div>
 
@@ -826,6 +830,15 @@ scene.add(new THREE.AmbientLight(0xffffff, 2.0));
   controls.enableZoom      = false;
   controls.autoRotate      = true;
   controls.autoRotateSpeed = 0.6;
+  controls.minDistance     = 8;
+  controls.maxDistance     = 30;
+
+  function zoomGlobe(factor) {
+    camera.position.multiplyScalar(factor);
+    camera.position.clampLength(controls.minDistance, controls.maxDistance);
+  }
+  document.getElementById('globe-zoom-in').addEventListener('click',  () => zoomGlobe(0.85));
+  document.getElementById('globe-zoom-out').addEventListener('click', () => zoomGlobe(1.18));
 
   /* Hover */
   const previewEl   = document.getElementById('globe-preview');
