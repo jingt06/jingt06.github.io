@@ -1,457 +1,915 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>J!ng</title>
-    <link rel="icon"
-     type="image/png"
-     href="image/j.png">
-    <script defer src="lib/fontawesome/svg-with-js/js/fontawesome-all.min.js"></script>
-    <link rel="stylesheet" href="lib/materialize/css/materialize.min.css">
-    <link rel="stylesheet" href="lib/style.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="lib/materialize/js/materialize.min.js"></script>
-    <script src="lib/main.js"></script>
-  </head>
-  <body>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jing Tao</title>
 
-  <nav>
-    <div class="nav-wrapper light-blue lighten-2">
-      <a href="#" data-activates="slide-out" class="brand-logo left">
-        <i class="fa fa-bars fa" style="padding-left: 5px"></i>
-      </a>
-      <ul id="nav-mobile" class="right hide-on-small">
-        <li><a onclick="home_page()">Home</a></li>
-        <li><a onclick="projects_page()">Projects</a></li>
-        <li><a onclick="life_page()">Life</a></li>
-      </ul>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: #fff;
+    color: #111;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  .nl { color: #8a8a8a; transition: color .2s; }
+  .nl:hover { color: #111; }
+
+  .root {
+    width: 100%;
+    max-width: 1120px;
+    margin: 0 auto;
+    background: #fff;
+  }
+
+  /* ── Nav ── */
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 28px 48px;
+    border-bottom: 1px solid #ececec;
+    position: sticky;
+    top: 0;
+    background: #fff;
+    z-index: 50;
+  }
+  .nav-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 17px;
+  }
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .hero-left {
+    padding: 96px 48px;
+    border-right: 1px solid #ececec;
+  }
+  .hero-right {
+    padding: 96px 48px;
+  }
+  .kicker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: .1em;
+    color: #8a8a8a;
+  }
+  .hero-h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
+    font-size: 60px;
+    line-height: 1.02;
+    letter-spacing: -.02em;
+    margin-top: 28px;
+  }
+  .hero-body {
+    font-size: 17px;
+    line-height: 1.7;
+    color: #555;
+    margin-top: 24px;
+    max-width: 42ch;
+  }
+  .now-rows {
+    margin-top: 28px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    line-height: 2.2;
+  }
+  .now-row {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px dashed #ddd;
+    padding-bottom: 8px;
+    margin-top: 10px;
+  }
+  .now-row:first-child { margin-top: 0; }
+  .now-label { color: #8a8a8a; }
+
+  /* ── Shared section ── */
+  .section {
+    border-top: 1px solid #ececec;
+    padding: 56px 48px;
+  }
+
+  /* ── Education ── */
+  .edu-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 28px;
+  }
+  .edu-card {
+    padding: 32px 40px 32px 0;
+  }
+  .edu-card + .edu-card {
+    padding: 32px 0 32px 40px;
+    border-left: 1px solid #ececec;
+  }
+  .edu-year {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #9a9a90;
+    letter-spacing: .08em;
+  }
+  .edu-school {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
+    font-size: 22px;
+    margin-top: 14px;
+    line-height: 1.15;
+  }
+  .edu-degree {
+    font-size: 14px;
+    color: #666;
+    margin-top: 10px;
+    line-height: 1.6;
+  }
+  .edu-tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: #9a7b4f;
+    letter-spacing: .08em;
+    border: 1px solid #e0d4c4;
+    padding: 3px 8px;
+    margin-top: 16px;
+  }
+
+  /* ── Experience ── */
+  .exp-grid {
+    display: grid;
+    grid-template-columns: 150px 1fr auto;
+    gap: 0 40px;
+    margin-top: 28px;
+  }
+  .exp-cell {
+    padding: 26px 0;
+    border-top: 1px solid #ececec;
+  }
+  .exp-cell.first { border-top-color: #111; }
+  .exp-company {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+  }
+  .exp-desc { font-size: 15px; color: #666; margin-top: 3px; }
+  .exp-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: #9a9a90;
+  }
+  .exp-loc {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: #9a9a90;
+  }
+
+  /* ── Travel ── */
+  .travel {
+    border-top: 1px solid #ececec;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .travel-left {
+    padding: 56px 48px;
+    border-right: 1px solid #ececec;
+  }
+  .travel-h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
+    font-size: 38px;
+    line-height: 1.05;
+    letter-spacing: -.02em;
+    margin-top: 24px;
+  }
+  .travel-body {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #666;
+    margin-top: 22px;
+    max-width: 38ch;
+  }
+  .travel-stat {
+    margin-top: 36px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: #8a8a8a;
+  }
+  .travel-stat-n {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 28px;
+    font-weight: 500;
+    color: #111;
+  }
+  .travel-right {
+    position: relative;
+    min-height: 400px;
+    background: #fafafa;
+    overflow: hidden;
+  }
+
+  /* Globe place preview — in left panel */
+  #globe-preview {
+    margin-top: 28px;
+    opacity: 0;
+    transition: opacity .25s;
+    pointer-events: none;
+    width: 100%;
+  }
+  #globe-preview-frame {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background: #f0efec;
+    border: 1px solid #ddd;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #globe-preview-frame img { width: 100%; height: 100%; object-fit: cover; display: none; }
+  #globe-preview-placeholder {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #bbb;
+    letter-spacing: .12em;
+  }
+  #globe-preview-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    margin-top: 14px;
+  }
+  #globe-preview-zh {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #9a7b4f;
+    margin-top: 3px;
+  }
+  #globe-preview-note {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #aaa;
+    margin-top: 2px;
+    letter-spacing: .06em;
+  }
+
+  /* ── Projects ── */
+  .proj-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 28px;
+  }
+  .proj-card {
+    padding: 24px 40px 24px 0;
+    border-top: 1px solid #ececec;
+  }
+  .proj-card:nth-child(1),
+  .proj-card:nth-child(2) {
+    border-top-color: #111;
+  }
+  .proj-card:nth-child(even) {
+    padding: 24px 0 24px 40px;
+    border-left: 1px solid #ececec;
+  }
+  .proj-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .proj-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+  }
+  .proj-arrow { color: #9a7b4f; }
+  .proj-desc { font-size: 14px; color: #666; margin-top: 6px; }
+  .proj-tags {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #9a9a90;
+    margin-top: 14px;
+  }
+
+  /* ── Contact ── */
+  .contact {
+    border-top: 1px solid #ececec;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 56px 48px;
+  }
+  .contact-heading {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
+    font-size: 28px;
+    letter-spacing: -.01em;
+  }
+  .contact-sub { font-size: 14px; color: #666; margin-top: 6px; }
+  .contact-links {
+    display: flex;
+    gap: 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+  }
+
+  /* ── Copyright ── */
+  .copyright {
+    border-top: 1px solid #ececec;
+    padding: 24px 48px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: #a0a09a;
+  }
+</style>
+</head>
+<body>
+<div class="root">
+
+  <!-- NAV -->
+  <nav class="nav">
+    <span class="nav-name">Jing Tao</span>
+    <div class="nav-links">
+      <a class="nl" href="#education">education</a>
+      <a class="nl" href="#work">work</a>
+      <a class="nl" href="#travel">travel</a>
+      <a class="nl" href="#projects">projects</a>
+      <a class="nl" href="#contact">contact</a>
     </div>
   </nav>
 
-  <ul id="slide-out" class="side-nav">
-    <li>
-      <div class="user-view">
-        <div class="background">
-          <img style="width:300px;height:230px;" src="image/shanghai.jpg">
-        </div>
-        <a><img class="circle" src="image/jing1.jpg"></a>
-        <a><span class="white-text name">Jing Tao</span></a>
-        <a><span class="white-text email">cs.jingtao@gmail.com</span></a>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-left">
+      <p class="kicker">01 — WHO</p>
+      <h1 class="hero-h1">Jing Tao</h1>
+      <p style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#9a9a90; letter-spacing:.08em; margin-top:24px;">Builder · Coder · Traveller · Learner</p>
+      <p class="hero-body">A thousand commits, a thousand cities.</p>
+    </div>
+    <div class="hero-right">
+      <p class="kicker">02 — NOW</p>
+      <div class="now-rows">
+        <div class="now-row"><span class="now-label">BASED</span><span>San Francisco</span></div>
+        <div class="now-row"><span class="now-label">FROM</span><span>Shanghai</span></div>
+        <div class="now-row"><span class="now-label">BUILDING</span><span>Software &amp; systems</span></div>
       </div>
-    </li>
-    <li><a style="font-size: 15px" href="https://www.linkedin.com/in/jingtao06/" target="_blank"><i class="fab fa-linkedin fa-lg"></i> &nbsp LinkedIn</a></li>
-    <li><a style="font-size: 15px" href="https://github.com/jingt06/" target="_blank"><i class="fab fa-github-square fa-lg"></i> &nbsp GitHub</a></li>
-    <li><div class="divider"></div></li>
-    <li><a style="cursor: pointer" onclick="home_page()">Home</a></li>
-    <li><a style="cursor: pointer" onclick="projects_page()">Projects</a></li>
-    <li><a style="cursor: pointer"onclick="life_page()">Life</a></li>
-  </ul>
+    </div>
+  </div>
 
-  <div class="row" id="home">
-    <div class="col s10 m4 l3 offset-s1 offset-m1 offset-l1">
-      <div class="card" id="about-me">
-        <div class="card-image">
-          <img src="image/life4.jpg">
-          <span class="card-title">About Me</span>
-        </div>
-        <div class="card-content">
-          <p>Wisher, Ramblin' Wreck, Waterloo Warrior, Xooglers, Shanghainese</p>
-        </div>
-        <div class="card-action">
-          <a href="https://www.linkedin.com/in/jingtao06/" target="_blank">LinkedIn</a>
-          <a href="https://github.com/jingt06/" target="_blank">Github</a>
-          <a href="#">Resume</a>
-        </div>
+  <!-- EXPERIENCE -->
+  <!-- EDUCATION -->
+  <div id="education" class="section">
+    <p class="kicker">03 — EDUCATION</p>
+    <div class="edu-grid">
+      <div class="edu-card">
+        <div class="edu-year">2020 — 2023</div>
+        <div class="edu-school">Georgia Institute of Technology</div>
+        <div class="edu-degree">M.S. Computer Science<br>Specialization in Computing Systems</div>
       </div>
-      <div class="card" id="skill-list">
-        <div class="card-image">
-          <img src="image/skill.jpg">
-          <span class="card-title">Skills</span>
-        </div>
-        <div class="card-content">
-          <table>
-            <tr><td><b>Web/Server Framwork:</b><br>NodeJS, Express, Angular, React, Webpack, jQuery, Backbone, Django, Tornado</td></tr>
-            <tr><td><b>Machine Learning:</b><br>Numpy, Keras, Tensorflow</td></tr>
-            <tr><td><b>Mobile Development:</b><br>React Native, Android SDK</td></tr>
-            <tr><td><b>Database:</b><br>MongoDB, MySQL, PostgreSQL, KDB</td></tr>
-            <tr><td><b>Programming Language</b><br>C++, C, JavaScript, Python, Java, Lisp, Q, Bash</td></tr>
-            <tr><td>Excellent understanding of <b>data structures</b>, <b>algorithms</b> and <b>design patterns</b></td></tr>
-            <tr><td>Familiar with <b>object-oriented programming</b>, <b>concurrent programming</b> and <b>network programming</b></td></tr>
-          </table>
-        </div>
-      </div>
-    </div>
-    <div class="col s10 m6 l7 offset-s1">
-      <div class="card" id="work-experience">
-        <div class="card-image">
-          <img src="image/sf.jpg">
-          <span class="card-title">Work Experience</span>
-        </div>
-        <div class="card-content">
-          <ul class="collapsible" data-collapsible="expandable">
-            <li>
-              <div class="collapsible-header">
-                <img style="height:30px" src="image/wish.png" alt="Wish">
-                <b style="margin-top:5px;margin-left:5px">Software Engineer/Senior Software Engineer/Engineer Manager</b>
-                <span style="margin-top:5px;margin-left:10px">Oct 2018 - Dec 2023</span>
-              </div>
-              <div class="collapsible-body">
-                Lead mutiple teams across merchant and consumer domain:
-                - Merchant Payment Team
-                - Merchant Performance Team
-                - Consumer Growth Team
-                - Shared Service Team
-              </div>
-            </li>
-            <li>
-              <div class="collapsible-header">
-                <img style="height:30px" src="image/wish.png" alt="Wish">
-                <b style="margin-top:5px;margin-left:5px">Software Engineer Intern</b>
-                <span style="margin-top:5px;margin-left:10px">Jan-Apr 2018</span>
-              </div>
-              <div class="collapsible-body">
-                Worked in Merchant Payment Team
-              </div>
-            </li>
-            <li>
-              <div class="collapsible-header">
-                <img style="height:30px" src="image/google.png" alt="Google">
-                <b style="margin-top:5px;margin-left:5px">Software Engineer Intern</b>
-                <span style="margin-top:5px;margin-left:10px">Jan-Apr 2017</span>
-              </div>
-              <div class="collapsible-body">
-                  Worked in Web Platform Team under Chrome Team, built <a target="_blank" href="https://web-confluence.appspot.com">web-confluence dashboard</a>.<br><br>
-                  &bull; Implemented JavaScript program to extract web APIs as object graph from a variety of versions and browsers via BrowserStack<br><br>
-                  &bull; Identified and extracted web interfaces from object graph and built tools to display web API catalogs<br><br>
-                  &bull; Established and visualized confluence metrics to show the health of web platform using D3.js
-              </div>
-            </li>
-            <li>
-              <div class="collapsible-header">
-                <b class="light-blue-text text-darken-2
-        " style="font-size:large">Quantum Cube Corporation</b>
-                <b style="margin-top:5px;margin-left:5px">Full Stack Developer Intern</b>
-                <span style="margin-top:5px;margin-left:10px">May-Aug 2016</span>
-              </div>
-              <div class="collapsible-body"><span>
-                &bull; Built stock analysis website using Angular, Highcharts, MySQL and NodeJS <br><br>
-                &bull; Implemented concurrent programs to collect stock quotes using C++ and Kdb/ <br><br>
-                &bull; Developed web applications to display real-time stock quotes using socket.io and ZeroMQ
-              </span></div>
-            </li>
-            <li>
-              <div class="collapsible-header">
-                <img style="height:40px" src="image/baixing.gif" alt="Baixing.com">
-                <b style="margin-top:7px;margin-left:5px">BI Tech Intern</b>
-                <span style="margin-top:7px;margin-left:10px">May-Aug 2015</span>
-              </div>
-              <div class="collapsible-body"><span>
-                &bull; Developed CRM modules using Html, CSS and jQuery <br><br>
-                &bull; Worked with MongoDB, PostgreSQL and created APIs
-                with Python Flask <br><br>
-                &bull; Wrote Python and pgScript for data screening and data analysis
-              </span></div>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="card" id="education">
-        <div class="card-image">
-          <img src="image/eng_edu.jpg">
-          <span class="card-title">Education</span>
-        </div>
-        <div class="card-content">
-          <table>
-            <tr>
-              <td colspan=2>
-                <div style="float:left"><img style="width:35px" src="image/gatech.png" alt="Gatech"><div style="margin-top: -35px; font-weight: bold; font-size: 20px;margin-left: 35px">Georgia Institute of Technology</div></div>
-                <div style="float:right"><i>2020 - Present<i></div>
-              </td>
-            </tr>
-            <tr>
-              <td colspan=2>
-              	<b>Master of Science in Computer Science</b>, specialized in <b>Computing Systems</b>
-              </td>
-            </tr>
-          </table>
-          <table>
-            <tr>
-              <td colspan=2>
-                <div style="float:left"><img style="width:35px" src="image/uw.gif" alt="UWaterloo"><div style="margin-top: -35px; font-weight: bold; font-size: 20px;margin-left: 35px">University of Waterloo</div></div>
-                <div style="float:right"><i>2013-2018<i></div>
-              </td>
-            </tr>
-            <tr>
-              <td colspan=2>
-              	Major in <b>Computer Science</b>, Minor in <b>Combinatorics & Optimization</b> and <b>Computational Mathematics</b>
-              </td>
-            </tr>
-          </table>
-        </div>
-      </div>
-      <div class="card" id="research-assistant">
-        <div class="card-image">
-          <img src="image/research.jpg">
-          <span class="card-title">Research</span>
-        </div>
-        <div class="card-content">
-          <ul class="collapsible" data-collapsible="expandable">
-            <li>
-              <div class="collapsible-header">
-                Undergraduate Research Assistant
-                <b style="margin-left:5px">CrowdEEG Project</b>
-                <span style="margin-left:10px">Sep-Dec 2016</span>
-              </div>
-              <div class="collapsible-body">
-                &bull; Worked on data analysis and created restfulAPI in Python Django <br><br>
-                &bull; Implemented Highchart plugin for data sonification with Tone.js <br><br>
-                &bull; Built a platform with React and Redux that allows mapping from signal to sound
-              </div>
-            </li>
-            <li>
-              <div class="collapsible-header">
-                Undergraduate Research Assistant
-                <b style="margin-left:5px">Webike Project</b>
-                <span style="margin-left:10px">Jan-Apr 2016</span>
-              </div>
-              <div class="collapsible-body">
-                &bull; Wrote Python scripts for data analysis <br><br>
-                &bull; Implemented trip detection algorithm based on gps, acceleration and discharge current <br><br>
-                &bull; Created data visualization using Google maps API
-              </div>
-            </li>
-          </ul>
-        </div>
+      <div class="edu-card">
+        <div class="edu-year">2013 — 2018</div>
+        <div class="edu-school">University of Waterloo</div>
+        <div class="edu-degree">B.C.S. Computer Science<br>Minor in Combinatorics &amp; Optimization · Computational Mathematics</div>
       </div>
     </div>
   </div>
-  <div class="row" id="projects" style="display: none">
-    <div class="col s10 m4 l4 offset-s1">
-      <div class="card personal-website">
-        <div class="card-image">
-          <img src="image/projects/website.png">
-          <span class="card-title" style="color: black">jing</span>
-        </div>
-        <div class="card-content">
-          <p>A personal website deployed on Github, built with Materialize.</p>
-        </div>
-        <div class="card-action">
-          <a href="https://github.com/jingt06/jingt06.github.io" target="_blank">Github</a>
-        </div>
+
+  <!-- EXPERIENCE -->
+  <div id="work" class="section">
+    <p class="kicker">04 — EXPERIENCE</p>
+    <div class="exp-grid">
+      <div class="exp-cell exp-meta first">2023—</div>
+      <div class="exp-cell first">
+        <div class="exp-company">Coinbase</div>
+        <div class="exp-desc">Senior SWE &amp; Tech Lead. Building Coinbase One — subscriptions and benefits system.</div>
       </div>
-      <div class="card connect4">
-        <div class="card-image">
-          <img src="image/projects/connect4.jpg">
-          <span class="card-title">Connect4 AI (2017)</span>
-        </div>
-        <div class="card-content">
-          <p>Developed an AI agent to play connect4. Using minimax adversarial search with alpha-beta pruning. Ranked top 10 in a tournament amoung all students.</p>
-        </div>
+      <div class="exp-cell exp-loc first">San Francisco</div>
+
+      <div class="exp-cell exp-meta">2018—23</div>
+      <div class="exp-cell">
+        <div class="exp-company">Wish</div>
+        <div class="exp-desc">SWE → Senior SWE → Engineering Manager. Led teams across merchant payments, merchant performance, consumer growth, and shared services.</div>
       </div>
-      <div class="card rpc">
-        <div class="card-image">
-          <img src="image/projects/RPC.png">
-          <span class="card-title" style="color: black">RPC Lib (2017)</span>
-        </div>
-        <div class="card-content">
-          <p> Implemented a c++ library including client, server stub and a binder program allowing client to execute remote procedures with dynamic binding</p>
-        </div>
+      <div class="exp-cell exp-loc">Toronto</div>
+
+      <div class="exp-cell exp-meta">2018</div>
+      <div class="exp-cell">
+        <div class="exp-company">Wish <span style="font-weight:400; color:#9a9a90; font-size:14px;">Intern</span></div>
+        <div class="exp-desc">Software Engineer Intern. Merchant Payment Team.</div>
       </div>
-      <div class="card cc3kio">
-        <div class="card-image">
-          <img src="image/projects/cc3kio.png">
-          <span class="card-title" style="color: black">cc3k.io (2016)</span>
-        </div>
-        <div class="card-content">
-          <p> An roguelike online multiplayer game developed in Node and socket.io, deployed on Heroku.</p>
-        </div>
-        <div class="card-action">
-          <a href="http://cc3k-io.herokuapp.com/" target="_blank">Link</a>
-          <a href="https://github.com/jingt06/cc3k.io" target="_blank">Github</a>
-        </div>
+      <div class="exp-cell exp-loc">San Francisco</div>
+
+      <div class="exp-cell exp-meta">2017</div>
+      <div class="exp-cell">
+        <div class="exp-company">Google <span style="font-weight:400; color:#9a9a90; font-size:14px;">Intern</span></div>
+        <div class="exp-desc">Software Engineer Intern, Chrome Web Platform. Built the Web Confluence dashboard — API catalog and platform health metrics with D3.js.</div>
       </div>
-      <div class="card webike">
-        <div class="card-image">
-          <img src="image/projects/webike.jpg">
-          <span class="card-title" style="color: black">WeBike (2015)</span>
+      <div class="exp-cell exp-loc">Waterloo</div>
+
+      <div class="exp-cell exp-meta">2016</div>
+      <div class="exp-cell">
+        <div class="exp-company">Quantum Cube <span style="font-weight:400; color:#9a9a90; font-size:14px;">Intern</span></div>
+        <div class="exp-desc">Full Stack Developer Intern. Real-time stock analysis platform with C++, KDB, NodeJS, and Angular.</div>
+      </div>
+      <div class="exp-cell exp-loc">Waterloo</div>
+
+      <div class="exp-cell exp-meta" style="border-bottom:1px solid #ececec;">2015</div>
+      <div class="exp-cell" style="border-bottom:1px solid #ececec;">
+        <div class="exp-company">Baixing.com <span style="font-weight:400; color:#9a9a90; font-size:14px;">Intern</span></div>
+        <div class="exp-desc">BI Tech Intern. CRM modules, Python Flask APIs, MongoDB and PostgreSQL.</div>
+      </div>
+      <div class="exp-cell exp-loc" style="border-bottom:1px solid #ececec;">Shanghai</div>
+    </div>
+  </div>
+
+  <!-- TRAVEL -->
+  <div id="travel" class="travel">
+    <div class="travel-left">
+      <p class="kicker">05 — TRAVEL</p>
+      <h2 class="travel-h2">Places logged.</h2>
+      <p class="travel-body">More to come.</p>
+      <div id="globe-preview">
+        <div id="globe-preview-frame">
+          <img id="globe-preview-img" alt="">
+          <span id="globe-preview-placeholder">PHOTO</span>
         </div>
-        <div class="card-content">
-          <p> Worked as an undergraduate research assistant in Information System and Science for Energy department in University of Waterloo. Worked on data analysis and data visualization for WeBike project.</p>
-        </div>
+        <div id="globe-preview-name"></div>
+        <div id="globe-preview-zh"></div>
+        <div id="globe-preview-note"></div>
       </div>
     </div>
-    <div class="col s10 m4 l4 offset-s1">
-      <div class="card web-confluence">
-        <div class="card-image">
-          <img src="image/projects/confluence.jpg">
-          <span class="card-title">Web Confluence (2017)</span>
-        </div>
-        <div class="card-content">
-          <p>Web Confluence Dashboard is my intern project in Google. It contains API Catalog and Confluence Metrics. API Catalog lists properties and methods exposed on constructor functions. Confluence Metrics is a visualization of how health is the web platform.</p>
-        </div>
-        <div class="card-action">
-          <a href="https://web-confluence.appspot.com/" target="_blank">Link</a>
-          <a href="https://github.com/GoogleChromeLabs/confluence" target="_blank">Github</a>
-        </div>
-      </div>
-      <div class="card cnn">
-        <div class="card-image">
-          <img src="image/projects/cnn.png">
-          <span class="card-title" style="color: black">Digit Classfier (2017)</span>
-        </div>
-        <div class="card-content">
-          <p>Built a convlutional neural network for image classifier on MNIST with Tensorflow, Numpy and Keras. Used 10-fold cross validation. Improved accuracy rate by applying test generalization and regularization.</p>
-        </div>
-      </div>
-      <div class="card crowdeeg">
-        <div class="card-image">
-          <img src="image/projects/crowdeeg.png">
-          <span class="card-title">CrowdEEG Sonification (2016)</span>
-        </div>
-        <div class="card-content">
-          <p>Worked as an undergraduate research assistant in CrowdEEG team. Involved in building a Highchart plugin to perform data sonification and a platform for transfering EEG signals to sound in React and Redux</p>
-        </div>
-        <div class="card-action">
-          <a href="http://crowdeeg.ca/" target="_blank">Link</a>
-        </div>
-      </div>
-      <div class="card stat">
-        <div class="card-image">
-          <img src="image/projects/stat.jpg">
-          <span class="card-title">Node Statistic (2016)</span>
-        </div>
-        <div class="card-content">
-          <p> A npm package that connects NodeJS with R. Allows Node program to perform statistical analysis in R.</p>
-        </div>
-        <div class="card-action">
-          <a href="https://github.com/jingt06/node-statistics" target="_blank">Github</a>
-        </div>
-      </div>
-      <div class="card wlp4">
-        <div class="card-image">
-          <img src="image/projects/compiler.png">
-          <span class="card-title" style="color: black">WLP4 Compiler (2015)</span>
-        </div>
-        <div class="card-content">
-          <p>A compiler for WLP4, including lexical analysis , syntax analysis, semantic analysis and code generation.</p>
-        </div>
-      </div>
+    <div class="travel-right">
+      <canvas id="globe-canvas" style="display:block; width:100%; height:100%; position:absolute; inset:0;"></canvas>
     </div>
-    <div class="col s10 m4 l4 offset-s1">
-      <div class="card circle">
-        <div class="card-image">
-          <img src="image/projects/circle.png">
-          <span class="card-title">Circle App (2017)</span>
+  </div>
+
+  <!-- PROJECTS -->
+  <div id="projects" class="section">
+    <p class="kicker">06 — VIBE PROJECTS</p>
+    <div class="proj-grid">
+      <div class="proj-card">
+        <div class="proj-header">
+          <a class="proj-title" href="https://stonktube.app" target="_blank">stonktube.app</a>
+          <span class="proj-arrow">↗</span>
         </div>
-        <div class="card-content">
-          <p>Worked as an architect, team leader in a team of four. Built a location based chat mobile app in React Native with a server in NodeJS. Store images and sound files using Google Cloud Storage.</p>
-        </div>
-        <div class="card-action">
-          <a href="https://github.com/446DayDayUp/CircleApp" target="_blank">Github</a>
-        </div>
+        <p class="proj-desc">Stock market meets video — curated financial content in one place.</p>
       </div>
-      <div class="card rdt">
-        <div class="card-image">
-          <img src="image/projects/rdt.png">
-          <span class="card-title" style="color: black">Reliable Data Transfer (2017)</span>
+      <div class="proj-card">
+        <div class="proj-header">
+          <a class="proj-title" href="https://litmap.net" target="_blank">litmap.net</a>
+          <span class="proj-arrow">↗</span>
         </div>
-        <div class="card-content">
-          <p>Built a lib in Python to perform reliable data transfer with go-back-N and selective repeat protocol.</p>
-        </div>
+        <p class="proj-desc">A map of the literary world — books, authors, and places connected.</p>
       </div>
-      <div class="card os161">
-        <div class="card-image">
-          <img src="image/projects/os161.png">
-          <span class="card-title" style="color: black">OS161 (2016)</span>
+      <div class="proj-card">
+        <div class="proj-header">
+          <a class="proj-title" href="https://super-go.up.railway.app" target="_blank">Super Go</a>
+          <span class="proj-arrow">↗</span>
         </div>
-        <div class="card-content">
-          <p> A project of Operating System course. Implemented features for Operating System 161, including locks, system calls and a virtual memory system</p>
-        </div>
+        <p class="proj-desc">Go with superpowers — a toolkit for leveling up your Go skills.</p>
       </div>
-      <div class="card tutor">
-        <div class="card-image">
-          <img src="image/projects/qa_app.jpg">
-          <span class="card-title">Tutor Q&A App (2015)</span>
+      <div class="proj-card">
+        <div class="proj-header">
+          <a class="proj-title" href="https://party-hub.up.railway.app/" target="_blank">Party Hub</a>
+          <span class="proj-arrow">↗</span>
         </div>
-        <div class="card-content">
-          <p>Worked in a team of five, built an Android App that connects students and tutors built with Android Studio. Worked with Amazon EC2 as cloud storage.</p>
-        </div>
-      </div>
-      <div class="card cc3k">
-        <div class="card-image">
-          <img src="image/projects/cc3k.jpg">
-          <span class="card-title">ChamberCrawler (2014)</span>
-        </div>
-        <div class="card-content">
-          <p>A game developed in C++ with varieties of design patterns.</p>
-        </div>
+        <p class="proj-desc">A collection of party games to play with friends.</p>
       </div>
     </div>
   </div>
-  <div class="slider-adjustment" id="life" style="display: none">
-    <div class="slider fullscreen">
-      <ul class="slides">
-        <li>
-          <img src="image/photos/sh.jpg">
-          <div class="caption center-align">
-            <h3 class="light grey-text text-lighten-3">I am from Shanghai</h3>
-          </div>
-        </li>
-        <li>
-          <img src="image/photos/toronto.jpg">
-          <div class="caption right-align">
-            <h3 class="light grey-text text-lighten-3">I studied in Canada since 2012</h3>
-          </div>
-        </li>
-        <li>
-          <img src="image/photos/uw.jpg">
-          <div class="caption right-align">
-            <h3 class="light grey-text text-lighten-3">Later, I went to the</h3>
-            <h3 class="light grey-text text-lighten-3">University of Waterloo</h3>
-          </div>
-        </li>
-        <li>
-          <img src="image/photos/google.jpg">
-          <div class="caption left-align">
-            <h4 class="light grey-text text-lighten-3">I interned in</h4>
-            <h4 class="light grey-text text-lighten-3">Google</h4>
-            <h4 class="light grey-text text-lighten-3">Waterloo</h4>
-            <h4 class="light grey-text text-lighten-3">in 2017</h4>
-          </div>
-        </li>
-        <li>
-          <img src="image/photos/sf.jpg">
-          <div class="caption right-align">
-            <h4 class="light grey-text text-lighten-3">Currently, I am interning in</h4>
-            <h4 class="light grey-text text-lighten-3">Wish, San Francisco</h4>
-          </div>
-        </li>
-        <li>
-          <img src="image/photos/soccer.jpg">
-          <div class="caption right-align">
-            <h3 class="light grey-text text-lighten-3">I love watching soccer</h3>
-          </div>
-        </li>
-        <li>
-          <img src="image/photos/raptor.jpg">
-          <div class="caption right-align">
-            <h3 class="light grey-text text-lighten-3">and basketball</h3>
-          </div>
-        </li>
-        <li>
-          <img src="image/photos/banff.jpg">
-        </li>
-        <li>
-          <img src="image/photos/banff2.jpg">
-        </li>
-        <li>
-          <img src="image/photos/beach.jpg">
-        </li>
-        <li>
-          <img src="image/photos/bbq.jpg">
-        </li>
-      </ul>
+
+  <!-- CONTACT -->
+  <div id="contact" class="contact">
+    <div>
+      <div class="contact-heading">Find me here.</div>
+    </div>
+    <div class="contact-links">
+      <a class="nl" href="#">GITHUB↗</a>
+      <a class="nl" href="#">LINKEDIN↗</a>
     </div>
   </div>
-  </body>
+
+  <div class="copyright">© 2026 JING TAO 陶靖</div>
+
+</div><!-- /.root -->
+
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+const PLACES = [
+  // beam — 光柱射线
+  { name: 'Shanghai',             zh: '上海',       lat:  31.23, lon:  121.47, note: 'Origin',      style: 'beam' },
+  { name: 'Toronto',              zh: '多伦多',     lat:  43.65, lon:  -79.38, note: 'Canada',      style: 'beam' },
+  { name: 'San Francisco',        zh: '旧金山',     lat:  37.77, lon: -122.42, note: 'USA',         style: 'beam',     photo: 'image/travel/sf.jpg' },
+  // pulse circle
+  { name: 'London',               zh: '伦敦',       lat:  51.51, lon:   -0.13, note: 'UK',          style: 'redpulse' },
+  { name: 'New York',             zh: '纽约',       lat:  40.71, lon:  -74.01, note: 'USA',         style: 'redpulse' },
+  { name: 'Tokyo',                zh: '东京',       lat:  35.68, lon:  139.69, note: 'Japan',       style: 'redpulse' },
+  { name: 'Vancouver',            zh: '温哥华',     lat:  49.28, lon: -123.12, note: 'Canada',      style: 'redpulse' },
+  { name: 'Istanbul',             zh: '伊斯坦布尔', lat:  41.01, lon:   28.98, note: 'Turkey',      style: 'redpulse' },
+  { name: 'Kyoto',                zh: '京都',       lat:  35.01, lon:  135.77, note: 'Japan',       style: 'redpulse' },
+  { name: 'Reykjavík',            zh: '雷克雅未克', lat:  64.13, lon:  -21.93, note: 'Iceland',     style: 'redpulse' },
+  { name: 'Cancun',               zh: '坎昆',       lat:  21.16, lon:  -86.85, note: 'Mexico',      style: 'redpulse' },
+  { name: 'Switzerland',          zh: '瑞士',       lat:  46.80, lon:    8.23, note: 'Switzerland', style: 'redpulse' },
+  { name: 'Rio de Janeiro',       zh: '里约热内卢', lat: -22.91, lon:  -43.17, note: 'Brazil',      style: 'redpulse' },
+  { name: 'São Paulo',            zh: '圣保罗',     lat: -23.55, lon:  -46.63, note: 'Brazil',      style: 'redpulse' },
+  { name: 'Jericoacoara',         zh: '热里科阿',   lat:  -2.79, lon:  -40.51, note: 'Brazil',      style: 'redpulse' },
+  { name: 'Lençóis Maranhenses',  zh: '马拉尼翁',   lat:  -2.55, lon:  -43.12, note: 'Brazil',      style: 'redpulse' },
+  { name: 'Banff',                zh: '班夫',       lat:  51.18, lon: -115.57, note: 'Canada',      style: 'redpulse' },
+  { name: 'Budapest',            zh: '布达佩斯',   lat:  47.50, lon:   19.04, note: 'Hungary',     style: 'redpulse' },
+  { name: 'Changsha',            zh: '长沙',       lat:  28.23, lon:  112.94, note: 'China',       style: 'redpulse' },
+  { name: 'Beijing',             zh: '北京',       lat:  39.91, lon:  116.39, note: 'China',       style: 'redpulse' },
+  { name: 'Yunnan',              zh: '云南',       lat:  25.05, lon:  102.71, note: 'China',       style: 'redpulse' },
+  { name: 'Sichuan',             zh: '四川',       lat:  30.67, lon:  104.07, note: 'China',       style: 'redpulse' },
+  { name: 'Sydney',              zh: '悉尼',       lat: -33.87, lon:  151.21, note: 'Australia',   style: 'redpulse' },
+  { name: 'Dumaguete',           zh: '杜马格特',   lat:   9.31, lon:  123.31, note: 'Philippines', style: 'redpulse' },
+  { name: 'Taipei',              zh: '台北',       lat:  25.03, lon:  121.57, note: 'Taiwan',      style: 'redpulse' },
+  { name: 'Ho Chi Minh',         zh: '胡志明市',   lat:  10.82, lon:  106.63, note: 'Vietnam',     style: 'redpulse' },
+  { name: 'Manchester',          zh: '曼彻斯特',   lat:  53.48, lon:   -2.24, note: 'UK',          style: 'redpulse' },
+  { name: 'Los Angeles',        zh: '洛杉矶',     lat:  34.05, lon: -118.24, note: 'USA',         style: 'redpulse' },
+  { name: 'Hong Kong',          zh: '香港',       lat:  22.32, lon:  114.17, note: 'China',       style: 'redpulse' },
+  { name: 'Orlando',            zh: '奥兰多',     lat:  28.54, lon:  -81.38, note: 'USA',         style: 'redpulse' },
+  { name: 'Atlanta',            zh: '亚特兰大',   lat:  33.75, lon:  -84.39, note: 'USA',         style: 'redpulse' },
+  { name: 'Brisbane',          zh: '布里斯班',   lat: -27.47, lon:  153.02, note: 'Australia',   style: 'redpulse' },
+  { name: 'Edinburgh',         zh: '爱丁堡',     lat:  55.95, lon:   -3.19, note: 'UK',          style: 'redpulse', photo: 'image/travel/edinburgh.jpg' },
+  { name: 'Washington DC',    zh: '华盛顿',     lat:  38.91, lon:  -77.04, note: 'USA',         style: 'redpulse' },
+  { name: 'Boston',           zh: '波士顿',     lat:  42.36, lon:  -71.06, note: 'USA',         style: 'redpulse' },
+  { name: 'Seattle',          zh: '西雅图',     lat:  47.61, lon: -122.33, note: 'USA',         style: 'redpulse' },
+  { name: 'Mount Fuji',       zh: '富士山',     lat:  35.36, lon:  138.73, note: 'Japan',       style: 'redpulse', photo: 'image/travel/fuji.jpg' },
+];
+
+const R = 4;
+
+function latLonToVec3(lat, lon, r) {
+  const t = (90 - lat) * Math.PI / 180;          // polar   (0 = N pole)
+  const p = (lon + 180) * Math.PI / 180;          // azimuthal (matches SphereGeometry UV)
+  return new THREE.Vector3(
+    -r * Math.cos(p) * Math.sin(t),
+     r * Math.cos(t),
+     r * Math.sin(p) * Math.sin(t)
+  );
+}
+
+
+/* ── Renderer / Scene / Camera ── */
+const container = document.querySelector('.travel-right');
+const canvas    = document.getElementById('globe-canvas');
+
+const W = container.clientWidth  || 560;
+const H = container.clientHeight || 560;
+
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+renderer.setPixelRatio(devicePixelRatio);
+renderer.setSize(W, H);
+renderer.setClearColor(0xfafafa, 1);
+
+const scene  = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(42, W / H, 0.1, 100);
+camera.position.set(15, 3.5, 10); /* faces Atlantic — sees both Americas + Europe on load */
+
+scene.add(new THREE.AmbientLight(0xffffff, 2.0));
+
+/* ── Async: build B&W map texture, then finish scene ── */
+(async () => {
+  const [{ geoEquirectangular, geoPath }, { feature, mesh: topoMesh }, world] = await Promise.all([
+    import('https://cdn.jsdelivr.net/npm/d3-geo@3/+esm'),
+    import('https://cdn.jsdelivr.net/npm/topojson-client@3/+esm'),
+    fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json').then(r => r.json()),
+  ]);
+
+  const TW = 2048, TH = 1024;
+  const texCanvas = document.createElement('canvas');
+  texCanvas.width = TW; texCanvas.height = TH;
+  const ctx = texCanvas.getContext('2d');
+
+  const proj = geoEquirectangular().scale(TW / (2 * Math.PI)).translate([TW / 2, TH / 2]);
+  const path = geoPath(proj, ctx);
+
+  const countriesGeo = feature(world, world.objects.countries);
+
+  /* ISO numeric codes for visited countries */
+  const visited = new Set([
+    840, // USA
+    124, // Canada
+    484, // Mexico
+     76, // Brazil
+    826, // UK
+    352, // Iceland
+    792, // Turkey
+    348, // Hungary
+    756, // Switzerland
+    156, // China
+    392, // Japan
+    158, // Taiwan
+    608, // Philippines
+    704, // Vietnam
+     36, // Australia
+    372, // Ireland
+  ]);
+
+  /* ── colour texture ── */
+  ctx.fillStyle = '#f3f3f1';
+  ctx.fillRect(0, 0, TW, TH);
+
+  /* all land — light base */
+  ctx.beginPath();
+  path(countriesGeo);
+  ctx.fillStyle = '#e3e3e0';
+  ctx.fill();
+
+  /* visited countries — darker grey */
+  ctx.beginPath();
+  countriesGeo.features.forEach(f => {
+    if (visited.has(+f.id)) path(f);
+  });
+  ctx.fillStyle = '#b8b8b4';
+  ctx.fill();
+
+  ctx.beginPath();
+  path(topoMesh(world, world.objects.countries, (a, b) => a !== b));
+  ctx.strokeStyle = '#aaaaaa';
+  ctx.lineWidth = 1;
+  ctx.stroke();
+
+  ctx.beginPath();
+  path(topoMesh(world, world.objects.countries, (a, b) => a === b));
+  ctx.strokeStyle = '#2a2a2a';
+  ctx.lineWidth = 2.5;
+  ctx.stroke();
+
+  const earthTex = new THREE.CanvasTexture(texCanvas);
+
+  /* ── bump map (white land / black ocean) ── */
+  const bumpCanvas = document.createElement('canvas');
+  bumpCanvas.width = TW; bumpCanvas.height = TH;
+  const bCtx = bumpCanvas.getContext('2d');
+
+  bCtx.fillStyle = '#000000';
+  bCtx.fillRect(0, 0, TW, TH);
+
+  const bPath = geoPath(proj, bCtx);
+  bCtx.beginPath();
+  bPath(countriesGeo);
+  bCtx.fillStyle = '#ffffff';
+  bCtx.fill();
+
+  const bumpTex = new THREE.CanvasTexture(bumpCanvas);
+
+  /* Globe sphere — displacement moves real geometry for visible 3D edges */
+  scene.add(new THREE.Mesh(
+    new THREE.SphereGeometry(R, 256, 256),
+    new THREE.MeshStandardMaterial({
+      map: earthTex,
+      displacementMap: bumpTex,
+      displacementScale: 0.08,
+      roughness: 1,
+      metalness: 0,
+    })
+  ));
+
+  /* Pins */
+  const pinMeshes  = [];
+  const pulseRings = [];
+  const col        = 0x9a7b4f;
+  const surf       = R + 0.1; // just above displaced surface
+
+  PLACES.forEach((place) => {
+    const pos    = latLonToVec3(place.lat, place.lon, R);
+    const normal = pos.clone().normalize();
+
+    /* invisible sphere for hover raycasting — all styles */
+    const hit = new THREE.Mesh(
+      new THREE.SphereGeometry(0.06 * R, 8, 8),
+      new THREE.MeshBasicMaterial({ visible: false })
+    );
+    hit.position.copy(normal.clone().multiplyScalar(surf + 0.04 * R));
+    hit.userData.place = place;
+    scene.add(hit);
+    pinMeshes.push(hit);
+
+    if (place.style === 'beam') {
+      const h = 7 * R; // extends far off-screen
+
+      /* uniform-radius beam column */
+      const beamMat = new THREE.MeshBasicMaterial({ color: 0xfff5e0, transparent: true, opacity: 0.55, side: THREE.FrontSide });
+      const beam = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.009 * R, 0.009 * R, h, 8, 1, true),
+        beamMat
+      );
+      beam.position.copy(normal.clone().multiplyScalar(surf + h / 2));
+      beam.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), normal);
+      beam.userData.phase = Math.random() * Math.PI * 2;
+      scene.add(beam);
+      pulseRings.push(beam); // reuse pulse loop for subtle flicker
+
+      /* soft glow halo — same axis, wider, more transparent */
+      const halo = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.028 * R, 0.028 * R, h * 0.5, 8, 1, true),
+        new THREE.MeshBasicMaterial({ color: 0xd4b896, transparent: true, opacity: 0.10, side: THREE.FrontSide })
+      );
+      halo.position.copy(normal.clone().multiplyScalar(surf + h * 0.25));
+      halo.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), normal);
+      scene.add(halo);
+
+      /* base disc */
+      const base = new THREE.Mesh(
+        new THREE.CircleGeometry(0.032 * R, 32),
+        new THREE.MeshBasicMaterial({ color: 0xfff0cc, transparent: true, opacity: 0.6, side: THREE.DoubleSide })
+      );
+      base.position.copy(normal.clone().multiplyScalar(surf + 0.002));
+      base.lookAt(base.position.clone().add(normal));
+      scene.add(base);
+
+    } else if (place.style === 'redpulse') {
+      /* small filled circle as base */
+      const dot = new THREE.Mesh(
+        new THREE.CircleGeometry(0.013 * R, 32),
+        new THREE.MeshBasicMaterial({ color: 0x9a7b4f, side: THREE.DoubleSide })
+      );
+      dot.position.copy(normal.clone().multiplyScalar(surf + 0.003));
+      dot.lookAt(dot.position.clone().add(normal));
+      scene.add(dot);
+
+      /* expanding pulse ring */
+      const pr = new THREE.Mesh(
+        new THREE.RingGeometry(0.013 * R, 0.022 * R, 32),
+        new THREE.MeshBasicMaterial({ color: 0x9a7b4f, side: THREE.DoubleSide, transparent: true, opacity: 0.8 })
+      );
+      pr.position.copy(normal.clone().multiplyScalar(surf + 0.002));
+      pr.lookAt(pr.position.clone().add(normal));
+      pr.userData.phase = Math.random() * Math.PI * 2;
+      scene.add(pr);
+      pulseRings.push(pr);
+
+    } else if (place.style === 'ring') {
+      const ring = new THREE.Mesh(
+        new THREE.RingGeometry(0.032 * R, 0.048 * R, 48),
+        new THREE.MeshBasicMaterial({ color: col, side: THREE.DoubleSide })
+      );
+      ring.position.copy(normal.clone().multiplyScalar(surf + 0.002));
+      ring.lookAt(ring.position.clone().add(normal));
+      scene.add(ring);
+
+    } else if (place.style === 'diamond') {
+      const h = 0.11 * R;
+      const mesh = new THREE.Mesh(
+        new THREE.ConeGeometry(0.026 * R, h, 4),
+        new THREE.MeshStandardMaterial({ color: col, roughness: 0.35, metalness: 0.1 })
+      );
+      mesh.position.copy(normal.clone().multiplyScalar(surf + h / 2));
+      mesh.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), normal);
+      /* rotate 45° so a flat face is forward */
+      mesh.quaternion.premultiply(new THREE.Quaternion().setFromAxisAngle(normal, Math.PI / 4));
+      scene.add(mesh);
+
+    } else if (place.style === 'pulse') {
+      /* small static dot */
+      const dot = new THREE.Mesh(
+        new THREE.SphereGeometry(0.016 * R, 12, 12),
+        new THREE.MeshStandardMaterial({ color: col, roughness: 0.7 })
+      );
+      dot.position.copy(normal.clone().multiplyScalar(surf + 0.016 * R));
+      scene.add(dot);
+
+      /* expanding ring */
+      const pr = new THREE.Mesh(
+        new THREE.RingGeometry(0.03 * R, 0.044 * R, 32),
+        new THREE.MeshBasicMaterial({ color: col, side: THREE.DoubleSide, transparent: true, opacity: 0.7 })
+      );
+      pr.position.copy(normal.clone().multiplyScalar(surf + 0.003));
+      pr.lookAt(pr.position.clone().add(normal));
+      pr.userData.normal = normal.clone();
+      pr.userData.phase  = Math.random() * Math.PI * 2;
+      scene.add(pr);
+      pulseRings.push(pr);
+    }
+  });
+
+  /* Controls */
+  const controls = new OrbitControls(camera, renderer.domElement);
+  controls.enableDamping   = true;
+  controls.enablePan       = false;
+  controls.enableZoom      = false;
+  controls.autoRotate      = true;
+  controls.autoRotateSpeed = 0.6;
+
+  /* Hover */
+  const previewEl   = document.getElementById('globe-preview');
+  const previewImg  = document.getElementById('globe-preview-img');
+  const previewPH   = document.getElementById('globe-preview-placeholder');
+  const previewName = document.getElementById('globe-preview-name');
+  const previewZh   = document.getElementById('globe-preview-zh');
+  const previewNote = document.getElementById('globe-preview-note');
+
+  const raycaster = new THREE.Raycaster();
+  const mouse     = new THREE.Vector2();
+  let   activePin = null;
+
+  renderer.domElement.addEventListener('pointermove', (e) => {
+    const rect = renderer.domElement.getBoundingClientRect();
+    mouse.x =  ((e.clientX - rect.left) / rect.width)  * 2 - 1;
+    mouse.y = -((e.clientY - rect.top)  / rect.height) * 2 + 1;
+    raycaster.setFromCamera(mouse, camera);
+    const hits = raycaster.intersectObjects(pinMeshes);
+    if (hits.length > 0) {
+      const place = hits[0].object.userData.place;
+      if (activePin !== place) {
+        activePin = place;
+        controls.autoRotate     = false;
+        previewEl.style.opacity = '1';
+        previewName.textContent = place.name;
+        previewZh.textContent   = place.zh;
+        previewNote.textContent = place.note;
+        if (place.photo) {
+          previewImg.src           = place.photo;
+          previewImg.style.display = 'block';
+          previewPH.style.display  = 'none';
+        } else {
+          previewImg.style.display = 'none';
+          previewPH.style.display  = 'block';
+        }
+      }
+    } else if (activePin) {
+      activePin               = null;
+      controls.autoRotate     = true;
+      previewEl.style.opacity = '0';
+    }
+  });
+
+  renderer.domElement.addEventListener('pointerleave', () => {
+    if (activePin) {
+      activePin               = null;
+      controls.autoRotate     = true;
+      previewEl.style.opacity = '0';
+    }
+  });
+
+  /* Resize */
+  const ro = new ResizeObserver(() => {
+    const w = container.clientWidth;
+    const h = container.clientHeight;
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+    renderer.setSize(w, h);
+  });
+  ro.observe(container);
+
+  /* Render loop */
+  (function animate() {
+    requestAnimationFrame(animate);
+    controls.update();
+
+    const t = Date.now() / 1000;
+    pulseRings.forEach(pr => {
+      if (pr.geometry.type === 'CylinderGeometry') {
+        /* beam flicker */
+        pr.material.opacity = 0.4 + 0.2 * Math.sin(t * 2.4 + pr.userData.phase);
+      } else {
+        /* expanding ring */
+        const progress = ((t * 1.2 + pr.userData.phase) % (Math.PI * 2)) / (Math.PI * 2);
+        const s = 1 + progress * 3;
+        pr.scale.set(s, s, 1);
+        pr.material.opacity = (1 - progress) * 0.65;
+      }
+    });
+
+    renderer.render(scene, camera);
+  })();
+})();
+</script>
+
+</body>
 </html>
