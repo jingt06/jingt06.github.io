@@ -269,13 +269,12 @@
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 500;
     font-size: 16px;
-    margin-top: 14px;
   }
   #globe-preview-zh {
     font-family: 'JetBrains Mono', monospace;
     font-size: 11px;
     color: #9a7b4f;
-    margin-top: 3px;
+    margin-top: 2px;
   }
   #globe-preview-note {
     font-family: 'JetBrains Mono', monospace;
@@ -283,6 +282,7 @@
     color: #aaa;
     margin-top: 2px;
     letter-spacing: .06em;
+    margin-bottom: 10px;
   }
 
   /* ── Projects ── */
@@ -460,13 +460,13 @@
       <h2 class="travel-h2">Places logged.</h2>
       <p class="travel-body">More to come.</p>
       <div id="globe-preview">
+        <div id="globe-preview-name"></div>
+        <div id="globe-preview-zh"></div>
+        <div id="globe-preview-note"></div>
         <div id="globe-preview-frame">
           <img id="globe-preview-img" alt="">
           <span id="globe-preview-placeholder">PHOTO</span>
         </div>
-        <div id="globe-preview-name"></div>
-        <div id="globe-preview-zh"></div>
-        <div id="globe-preview-note"></div>
       </div>
     </div>
     <div class="travel-right">
@@ -519,8 +519,8 @@
       <div class="contact-heading">Find me here.</div>
     </div>
     <div class="contact-links">
-      <a class="nl" href="#">GITHUB↗</a>
-      <a class="nl" href="#">LINKEDIN↗</a>
+      <a class="nl" href="https://github.com/jingt06" target="_blank">GITHUB↗</a>
+      <a class="nl" href="https://www.linkedin.com/in/jingtao06/" target="_blank">LINKEDIN↗</a>
     </div>
   </div>
 
@@ -727,6 +727,7 @@ scene.add(new THREE.AmbientLight(0xffffff, 2.0));
   /* Pins */
   const pinMeshes  = [];
   const pulseRings = [];
+  const dotMeshes  = [];
   const col        = 0x9a7b4f;
   const surf       = R + 0.1; // just above displaced surface
 
@@ -786,6 +787,7 @@ scene.add(new THREE.AmbientLight(0xffffff, 2.0));
       dot.position.copy(normal.clone().multiplyScalar(surf + 0.003));
       dot.lookAt(dot.position.clone().add(normal));
       scene.add(dot);
+      dotMeshes.push(dot);
 
       /* expanding pulse ring */
       const pr = new THREE.Mesh(
@@ -933,6 +935,8 @@ scene.add(new THREE.AmbientLight(0xffffff, 2.0));
     controls.update();
 
     const t = Date.now() / 1000;
+    const zoomFactor = camera.position.length() / 18.4;
+    dotMeshes.forEach(d => d.scale.setScalar(zoomFactor));
     pulseRings.forEach(pr => {
       if (pr.geometry.type === 'CylinderGeometry') {
         /* beam flicker */
@@ -947,12 +951,13 @@ scene.add(new THREE.AmbientLight(0xffffff, 2.0));
           pr.material.opacity = 0;
         } else if (elapsed < 1.6) {
           const progress = elapsed / 1.6;
-          pr.scale.set(1 + progress * 3, 1 + progress * 3, 1);
+          const ps = (1 + progress * 3) * zoomFactor;
+          pr.scale.set(ps, ps, 1);
           pr.material.opacity = (1 - progress) * 0.65;
         } else {
           pr.material.opacity = 0;
           pr.scale.set(1, 1, 1);
-          pr.userData.nextPulse = t + 1 + Math.random() * 4; // wait 1–5s before next pulse
+          pr.userData.nextPulse = t + 1 + Math.random() * 4;
         }
       }
     });
