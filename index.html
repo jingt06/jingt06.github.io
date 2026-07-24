@@ -258,7 +258,7 @@
     align-items: center;
     justify-content: flex-start;
   }
-  #globe-preview-frame img { width: 100%; height: 100%; object-fit: contain; object-position: left center; display: none; }
+  #globe-preview-frame img { width: 100%; height: 100%; object-fit: contain; object-position: left top; display: none; }
   #globe-preview-placeholder {
     font-family: 'JetBrains Mono', monospace;
     font-size: 11px;
@@ -727,7 +727,8 @@ scene.add(new THREE.AmbientLight(0xffffff, 2.0));
   /* Pins */
   const pinMeshes  = [];
   const pulseRings = [];
-  const dotMeshes  = [];
+  const dotMeshes  = []; // circle/dot markers — scale uniformly
+  const beamMeshes = []; // beam cylinders — scale x/z only (radius, not height)
   const col        = 0x9a7b4f;
   const surf       = R + 0.1; // just above displaced surface
 
@@ -759,6 +760,7 @@ scene.add(new THREE.AmbientLight(0xffffff, 2.0));
       beam.userData.phase = Math.random() * Math.PI * 2;
       scene.add(beam);
       pulseRings.push(beam); // reuse pulse loop for subtle flicker
+      beamMeshes.push(beam);
 
       /* soft glow halo — same axis, wider, more transparent */
       const halo = new THREE.Mesh(
@@ -768,6 +770,7 @@ scene.add(new THREE.AmbientLight(0xffffff, 2.0));
       halo.position.copy(normal.clone().multiplyScalar(surf + h * 0.25));
       halo.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), normal);
       scene.add(halo);
+      beamMeshes.push(halo);
 
       /* base disc */
       const base = new THREE.Mesh(
@@ -777,6 +780,7 @@ scene.add(new THREE.AmbientLight(0xffffff, 2.0));
       base.position.copy(normal.clone().multiplyScalar(surf + 0.002));
       base.lookAt(base.position.clone().add(normal));
       scene.add(base);
+      dotMeshes.push(base);
 
     } else if (place.style === 'redpulse') {
       /* small filled circle as base */
@@ -937,6 +941,7 @@ scene.add(new THREE.AmbientLight(0xffffff, 2.0));
     const t = Date.now() / 1000;
     const zoomFactor = camera.position.length() / 18.4;
     dotMeshes.forEach(d => d.scale.setScalar(zoomFactor));
+    beamMeshes.forEach(b => b.scale.set(zoomFactor, 1, zoomFactor));
     pulseRings.forEach(pr => {
       if (pr.geometry.type === 'CylinderGeometry') {
         /* beam flicker */
