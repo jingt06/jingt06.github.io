@@ -867,7 +867,12 @@ scene.add(new THREE.AmbientLight(0xffffff, 2.0));
     mouse.x =  ((e.clientX - rect.left) / rect.width)  * 2 - 1;
     mouse.y = -((e.clientY - rect.top)  / rect.height) * 2 + 1;
     raycaster.setFromCamera(mouse, camera);
-    const hits = raycaster.intersectObjects(pinMeshes);
+    const hits = raycaster.intersectObjects(pinMeshes).filter(h => {
+      /* reject pins on the far side of the globe */
+      const pinNormal = h.object.position.clone().normalize();
+      const toCamera  = camera.position.clone().normalize();
+      return pinNormal.dot(toCamera) > 0;
+    });
     if (hits.length > 0) {
       const place = hits[0].object.userData.place;
       if (activePin !== place) {
